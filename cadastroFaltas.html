@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Faltas</title>
+</head>
+<?php
+<body>
+<h1>Cadastro de faltas</h1>
+<form method="post">
+    <label>
+        Nome<input type="text" class="" name="nome" required>
+    </label><br>
+    <label>
+    Nivel de Falta
+        <select name="nivel_falta">
+            <option value="leve"> Leve</option>
+            <option value="media"> Media</option>
+            <option value="grave"> Grave</option>
+        </select>
+    </label><br>
+    <label>
+        Curso<input type="text" class="" name="curso" required>
+    </label><br>
+    <label>
+        Turno<input type="text" class="" name="turno" required>
+    </label><br>
+    <label>
+        Serie<input type="text" class="" name="serie" required>
+    </label><br>
+    <label>
+        Motivo<input type="text" class="" name="motivo" required>
+    </label><br>
+    <input type="submit" value="Confirmar" name="confirmar">
+    <input type="button" value="Cancelar" name="cancelar">
+</form>
+</body>
+</html>
