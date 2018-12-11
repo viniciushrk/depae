@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2904d74c-f703-42db-bbb2-2a2513d6b512" name="Default Changelist" comment="" />
+    <list default="true" id="2904d74c-f703-42db-bbb2-2a2513d6b512" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/_windows/applicationLibraries.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_windows/laf.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codestyles/Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/colors.scheme.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/databaseDrivers.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/debugger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/find.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.default.xml" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -430,6 +441,15 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1405837776">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -478,20 +498,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PHPExcel-1.8/PHPExcel-1.8/Classes/teste.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="288" column="16" lean-forward="true" selection-start-line="288" selection-start-column="16" selection-end-line="288" selection-end-column="16" />
+            <state relative-caret-position="3343">
+              <caret line="288" column="16" selection-start-line="288" selection-start-column="16" selection-end-line="288" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_3.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16609">
-              <caret line="977" column="9" selection-start-line="977" selection-start-column="9" selection-end-line="977" selection-end-column="9" />
+            <state relative-caret-position="34">
+              <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -570,6 +590,9 @@
       <replace>Servidor</replace>
       <replace>Curso</replace>
     </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -650,49 +673,28 @@
     <option name="width" value="1940" />
     <option name="height" value="1050" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="DEPAE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DEPAE" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DEPAE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DEPAE" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DEPAE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DEPAE" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPExcel-1.8" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DEPAE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DEPAE" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPExcel-1.8" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPExcel-1.8" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DEPAE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DEPAE" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPExcel-1.8" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPExcel-1.8" type="462c0819:PsiDirectoryNode" />
-              <item name="Classes" type="462c0819:PsiDirectoryNode" />
+              <item name="depae" type="b2602c69:ProjectViewProjectNode" />
+              <item name="depae" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="ChangesTree.GroupingKeys" value="directory" />
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Estagio/DEPAE/valida.php" />
@@ -702,7 +704,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -723,7 +725,7 @@
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\viniciushrk\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -797,17 +799,17 @@
       <workItem from="1543876576381" duration="4891000" />
       <workItem from="1543930234271" duration="746000" />
       <workItem from="1544043686085" duration="1265000" />
+      <workItem from="1544526210031" duration="773000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="338066000" />
+    <option name="totallyTimeSpent" value="338839000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4212766" weight="0.13154362" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4212766" visible="true" weight="0.13086233" />
       <window_info id="Structure" order="1" sideWeight="0.57872343" side_tool="true" weight="0.15033557" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -818,10 +820,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32903227" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32903227" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32991204" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -967,7 +969,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/teste2.php" />
     <entry file="file://$PROJECT_DIR$/classes/PHPExcel.php" />
-    <entry file="file://$PROJECT_DIR$/../index.php" />
+    <entry file="file://$USER_HOME$/index.php" />
     <entry file="file://$PROJECT_DIR$/PHPExcel-1.8/PHPExcel-1.8/Classes/PHPExcel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -996,13 +998,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/.Pessoas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="85" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/.Pessoas.php" />
     <entry file="file://$PROJECT_DIR$/classes/Conexao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1112,13 +1108,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_3.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16609">
-          <caret line="977" column="9" selection-start-line="977" selection-start-column="9" selection-end-line="977" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/Turno.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -1142,8 +1131,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PHPExcel-1.8/PHPExcel-1.8/Classes/teste.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="288" column="16" lean-forward="true" selection-start-line="288" selection-start-column="16" selection-end-line="288" selection-end-column="16" />
+        <state relative-caret-position="3343">
+          <caret line="288" column="16" selection-start-line="288" selection-start-column="16" selection-end-line="288" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_3.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
         </state>
       </provider>
     </entry>
