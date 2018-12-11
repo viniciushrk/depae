@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2904d74c-f703-42db-bbb2-2a2513d6b512" name="Default Changelist" comment="" />
+    <list default="true" id="2904d74c-f703-42db-bbb2-2a2513d6b512" name="Default Changelist" comment="update readme">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -430,18 +433,39 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1999210654">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="md" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Markdown" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="md" value="19" />
+          <entry key="txt" value="15" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Markdown" value="19" />
+          <entry key="PLAIN_TEXT" value="15" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/Servidor.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5236">
-              <caret line="308" column="37" selection-start-line="308" selection-start-column="37" selection-end-line="308" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/login.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -478,20 +502,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PHPExcel-1.8/PHPExcel-1.8/Classes/teste.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="288" column="16" lean-forward="true" selection-start-line="288" selection-start-column="16" selection-end-line="288" selection-end-column="16" />
+            <state relative-caret-position="640">
+              <caret line="288" column="16" selection-start-line="288" selection-start-column="16" selection-end-line="288" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor>
+                <caret column="17" selection-start-column="17" selection-end-column="17" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_3.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16609">
-              <caret line="977" column="9" selection-start-line="977" selection-start-column="9" selection-end-line="977" selection-end-column="9" />
+            <state relative-caret-position="256">
+              <caret line="962" column="13" lean-forward="true" selection-start-line="962" selection-start-column="13" selection-end-line="962" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -571,10 +607,12 @@
       <replace>Curso</replace>
     </replaceStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="788b5c0b-f171-481b-806c-2c13045a8217/schema/depae/table/status.sql" />
         <option value="$PROJECT_DIR$/desativa.html" />
         <option value="$PROJECT_DIR$/teste.html" />
         <option value="$PROJECT_DIR$/classes/status.php" />
@@ -625,6 +663,7 @@
         <option value="$PROJECT_DIR$/classes/Tipo_vinculo.php" />
         <option value="$PROJECT_DIR$/classes/Curso.php" />
         <option value="$PROJECT_DIR$/PHPExcel-1.8/PHPExcel-1.8/Classes/teste.php" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -660,31 +699,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="DEPAE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DEPAE" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DEPAE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DEPAE" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DEPAE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DEPAE" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPExcel-1.8" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DEPAE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DEPAE" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPExcel-1.8" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPExcel-1.8" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DEPAE" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DEPAE" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPExcel-1.8" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPExcel-1.8" type="462c0819:PsiDirectoryNode" />
-              <item name="Classes" type="462c0819:PsiDirectoryNode" />
+              <item name="depae" type="b2602c69:ProjectViewProjectNode" />
+              <item name="depae" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -702,7 +718,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -723,7 +739,7 @@
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\viniciushrk\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -797,17 +813,33 @@
       <workItem from="1543876576381" duration="4891000" />
       <workItem from="1543930234271" duration="746000" />
       <workItem from="1544043686085" duration="1265000" />
+      <workItem from="1544526987732" duration="803000" />
     </task>
+    <task id="LOCAL-00001" summary="update readme">
+      <created>1544527132489</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1544527132489</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update readme">
+      <created>1544527632393</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1544527632393</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="338066000" />
+    <option name="totallyTimeSpent" value="338869000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4212766" weight="0.13154362" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4212766" visible="true" weight="0.13086233" />
       <window_info id="Structure" order="1" sideWeight="0.57872343" side_tool="true" weight="0.15033557" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -822,7 +854,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="10" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" weight="0.32903227" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32991204" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -861,8 +893,20 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand>
+      <path>
+        <item name="depae" type="b2602c69:ProjectViewProjectNode" />
+        <item name="depae" type="462c0819:PsiDirectoryNode" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="das://788b5c0b-f171-481b-806c-2c13045a8217/schema/depae/table/aluno" />
     <entry file="file://$PROJECT_DIR$/cadastrofalta.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -996,13 +1040,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/.Pessoas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="85" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/.Pessoas.php" />
     <entry file="file://$PROJECT_DIR$/classes/Conexao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1112,13 +1150,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_3.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16609">
-          <caret line="977" column="9" selection-start-line="977" selection-start-column="9" selection-end-line="977" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/Turno.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -1140,10 +1171,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="17" selection-start-column="17" selection-end-column="17" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PHPExcel-1.8/PHPExcel-1.8/Classes/teste.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="288" column="16" lean-forward="true" selection-start-line="288" selection-start-column="16" selection-end-line="288" selection-end-column="16" />
+        <state relative-caret-position="640">
+          <caret line="288" column="16" selection-start-line="288" selection-start-column="16" selection-end-line="288" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_3.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="962" column="13" lean-forward="true" selection-start-line="962" selection-start-column="13" selection-end-line="962" selection-end-column="13" />
         </state>
       </provider>
     </entry>
