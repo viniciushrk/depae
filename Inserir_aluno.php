@@ -16,6 +16,7 @@
 
 <center>
 <form  action="test.php"  method="post" type="file" enctype="multipart/form-data">
+    <label class="btn btn-block btn-pri"
     <input name="fileUpload[]" type="file" multiple id="dropz"/>
     <input class="btn btn-outline-success mb-3" id="submit-all" type="submit" value="Enviar arquivo"/>
     <!--renomeie o nome do arquivo <input name="nome" type="text" multiple="multiple">-->
