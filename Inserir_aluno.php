@@ -1,5 +1,6 @@
 <head>
-    <link rel="stylesheet" href="dropzone.css">
+<!--    <link rel="stylesheet" href="dropzone.css">-->
+        <link rel="stylesheet" href="drop.css">
 </head>
 
 <body>
@@ -16,12 +17,13 @@
 
 <center>
 <form  action="test.php"  method="post" type="file" enctype="multipart/form-data">
-    <label class="btn btn-block btn-pri"
-    <input name="fileUpload[]" type="file" multiple id="dropz"/>
+<div class="upload-drop-zone" id="drop-zone">
+    <input name="fileUpload[]" " type="file" multiple id="dropz"/>
     <input class="btn btn-outline-success mb-3" id="submit-all" type="submit" value="Enviar arquivo"/>
     <!--renomeie o nome do arquivo <input name="nome" type="text" multiple="multiple">-->
     <!--<input type="hidden" name="maximum-size" value="30000"/>-->
-    </form>
+</div>
+</form>
 </center>
 </body>
 <script src="dropzone.js"></script>
