@@ -18,13 +18,13 @@
 <br/>
 <br/>
 
-<!--<form  action="test.php"  method="post" type="file" enctype="multipart/form-data">-->
+<form  action="test.php"  method="post" type="file" enctype="multipart/form-data">
 
     <input class="upload-drop-zone" id="drop-zone" width="200px" name="fileUpload[]" " type="file" multiple/>
     <input class="btn btn-outline-success mb-3" id="submit-all" type="submit" value="Enviar arquivo"/>
     <!--renomeie o nome do arquivo <input name="nome" type="text" multiple="multiple">-->
     <!--<input type="hidden" name="maximum-size" value="30000"/>-->
-<!--</form>-->
+</form>
 
 <div class="upload-drop-zone" id="drop-zone">
     just drag
