@@ -35,7 +35,7 @@
 
 <script src="assets/js/jquery.min.js"></script>
 <script>
-    + function($) {
+   /* + function($) {
         'use strict';
 
         // UPLOAD CLASS DEFINITION
@@ -72,7 +72,7 @@
             return false;
         }
 
-    }(jQuery);
+    }(jQuery);*/
    // var Dropzone=new Dropzone("div#meuId",{url:"test.php"});
     // $("div#meuId").dropzone({url: "test.php"});
     // Dropzone.options.dropz ={
