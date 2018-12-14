@@ -272,9 +272,9 @@
             for ($c = 0; $c < $numeroDeDisciplinas; $c++) {
                 $materia = "";
                 $turmaDP = "";
-                if ($tipos_vinculos->offsetGet($c) === 'DP'){
-                    $materia = explode('(', $materias->offsetGet($c));
-                    $turmaDP = str_replace(')', '', $materia[1]);
+                if ($tipos_vinculos->offsetGet($c) === 'DP' or $tipos_vinculos->offsetGet($c) === 'TR' or $tipos_vinculos->offsetGet($c) === 'ES'){
+                    $materia = explode(' - ', $materias->offsetGet($c));
+                    $turmaDP = $materia[1];
                     $materia = $materia[0];
                     
                 }else{
@@ -307,7 +307,8 @@
                     $discAluno->setTurmaIdTurma($turmaDP);
                 }else{
                     $discAluno->setTurmaIdTurma($turma->getIdTurma());
-                }
+                }
+
                 $discAluno->salvar();
 
             }
@@ -317,14 +318,5 @@
 
     echo "</table>";
 
-
-
-
-
-        echo"<div class='text-center'>";
-             echo "<input type='submit' class='btn btn-success float-right' value='Confirmar' name='confirmar'>";
-             ?>
-             <a href="../../../index.php?page= <?php if (isset($_GET['http_referer'])) { echo $_GET['http_referer'];} ?>"> </a>
-        </div>
-    </body>
-</html>
+    echo"</body>";
+echo"</html>";
