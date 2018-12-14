@@ -1,6 +1,9 @@
 <head>
 <!--    <link rel="stylesheet" href="dropzone.css">-->
         <link rel="stylesheet" href="drop.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
@@ -15,23 +18,62 @@
 <br/>
 <br/>
 
-<center>
-<form  action="test.php"  method="post" type="file" enctype="multipart/form-data">
-<div class="upload-drop-zone" id="drop-zone">
-    <input name="fileUpload[]" " type="file" multiple id="dropz"/>
+<!--<form  action="test.php"  method="post" type="file" enctype="multipart/form-data">-->
+
+    <input class="upload-drop-zone" id="drop-zone" width="200px" name="fileUpload[]" " type="file" multiple/>
     <input class="btn btn-outline-success mb-3" id="submit-all" type="submit" value="Enviar arquivo"/>
     <!--renomeie o nome do arquivo <input name="nome" type="text" multiple="multiple">-->
     <!--<input type="hidden" name="maximum-size" value="30000"/>-->
+<!--</form>-->
+
+<div class="upload-drop-zone" id="drop-zone">
+    just drag
 </div>
-</form>
-</center>
 </body>
+
 <script src="dropzone.js"></script>
 
 <script src="assets/js/jquery.min.js"></script>
 <script>
+    + function($) {
+        'use strict';
 
-    var Dropzone=new Dropzone("div#meuId",{url:"test.php"});
+        // UPLOAD CLASS DEFINITION
+        // ======================
+
+        var dropZone = document.getElementById('drop-zone');
+        var uploadForm = document.getElementById('js-upload-form');
+
+        var startUpload = function(files) {
+            console.log(files)
+        }
+
+        uploadForm.addEventListener('submit', function(e) {
+            var uploadFiles = document.getElementById('js-upload-files').files;
+            e.preventDefault()
+
+            startUpload(uploadFiles)
+        })
+
+        dropZone.ondrop = function(e) {
+            e.preventDefault();
+            this.className = 'upload-drop-zone';
+
+            startUpload(e.dataTransfer.files)
+        }
+
+        dropZone.ondragover = function() {
+            this.className = 'upload-drop-zone drop';
+            return false;
+        }
+
+        dropZone.ondragleave = function() {
+            this.className = 'upload-drop-zone';
+            return false;
+        }
+
+    }(jQuery);
+   // var Dropzone=new Dropzone("div#meuId",{url:"test.php"});
     // $("div#meuId").dropzone({url: "test.php"});
     // Dropzone.options.dropz ={
     //     paramName: 'fileUpload[]',
