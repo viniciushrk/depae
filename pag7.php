@@ -5,7 +5,7 @@
         <div class="row">
 
             <!-- Botão Informática da página de Cursos -->
-            <div class="col col-lg-3">
+            <div class="col col-lg-3 mt-7">
                 <a  class="<?php if($page == "pag7"){ echo "active";}?>" href="index.php?page=pag6">
                     <button class="btn bnt-primarybr btn-lgrelatorio">
                         Informática
@@ -14,7 +14,7 @@
             </div>
 
             <!-- Botão Edificações da página de Cursos -->
-            <div class="col-lg-3">
+            <div class="col-lg-3 mt-7">
                 <a  class="<?php if($page == "pag7"){ echo "active";}?>" href="index.php?page=pag6">
                     <button class="btn bnt-primarybr btn-lgrelatorio">
                         Edificações
@@ -23,7 +23,7 @@
             </div>
 
             <!-- Botão Eletrotécnica da página de Cursos -->
-            <div class="col-lg-3">
+            <div class="col-lg-3 mt-7">
                 <a class="<?php if($page == "pag7"){ echo "active";}?>" href="index.php?page=pag6">
                     <button class="btn bnt-primarybr btn-lgrelatorio">
                         Eletrotécnica
@@ -32,7 +32,7 @@
             </div>
 
             <!-- Botão Química da página de Cursos -->
-            <div class="col-lg-3">
+            <div class="col-lg-3 mt-7">
                 <a class="<?php if($page == "pag7"){ echo "active";}?>" href="index.php?page=pag6">
                     <button class="btn bnt-primarybr btn-lgrelatorio">
                         Química

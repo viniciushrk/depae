@@ -8,7 +8,7 @@
     require_once("classes/Servidor.php");
     if(isset($_POST['email']) && isset($_POST['senha'])){
         $email = $_POST['email'];
-        $senha = base64_encode($_POST['senha']);
+        $senha = crypt($_POST['senha'], "password");
     }else{
         header("location:index.php&aqui");
     }
