@@ -24,7 +24,14 @@ class Conexao
             $con->query("SET NAMES utf8");
             return $con;
         } catch (PDOException $e) {
-            return $e->getMessage();
+            try{
+                $con = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, "LuizGamer_13");
+                $con->query("SET NAMES utf8");
+                return $con;
+            }catch(PDOException $e) {
+                return $e->getMessage();
+            }
+
         }
     }
 }
