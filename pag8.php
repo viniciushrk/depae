@@ -1,10 +1,9 @@
 <!-- Turno -->
-
 <div class="container mx-auto" id="AP">
     <div class="row">
-
         <!-- Botão Matutino da página Turnos -->
-        <div class="col-lg-4">
+
+        <div class="col-lg-4 mt-7">
             <a  class="<?php if($page == "pag8"){ echo "active";}?>" href="index.php?page=pag6">
                 <button class="btn bnt-primarybr btn-lgrelatorio">
                     Matutino
@@ -13,7 +12,7 @@
         </div>
 
         <!-- Botão Vespertino da página Turnos -->
-        <div class="col-lg-4">
+        <div class="col-lg-4 mt-7">
             <a  class="<?php if($page == "pag8"){ echo "active";}?>" href="index.php?page=pag6">
                 <button class="btn bnt-primarybr btn-lgrelatorio btnr">
                     Vespertino
