@@ -43,6 +43,11 @@
               <a class="dropdown-item <?php if($page == "pag9"){ echo "active";}?>" href="index.php?page=pag9">Falta</a>
             </div>
       </li>
+        <li class="nav-item">
+            <a class="nav-link text-white text-dark:hover<?php if($page == "pag4"){ echo "active";}?>" href="index.php?page=Inserir_aluno&http_referer=<?php echo $page?>">
+                inserir aluno
+            </a>
+        </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <button class="btn btn-danger my-2 my-sm-0" type="submit">Sair</button>

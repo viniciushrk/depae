@@ -1,7 +1,0 @@
-<application>
-  <component name="NotificationConfiguration">
-    <notification groupId="PHP-CGI Server" />
-    <notification groupId="PHPUnit" shouldLog="false" />
-    <notification groupId="Web Deployment: Remote Host" displayType="TOOL_WINDOW" />
-  </component>
-</application>
