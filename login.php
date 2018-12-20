@@ -22,7 +22,7 @@
 
                     <!-- Checkbox Esqueci minha senha -->
                     <label>
-                        <a href="index.php?page=esqueci">Esqueci minha senha</a>
+                        <a  href="index.php?page=esqueci.php">Esqueci minha senha</a>
                     </label>
                         <br>
 

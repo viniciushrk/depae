@@ -10,7 +10,7 @@
      * Date: 27/10/2018
      * Time: 19:15
      */
-    set_time_limit(600);
+    set_time_limit(300);
     require_once "../../../Classes/Conexao.php";
     require_once "../../../Classes/Servidor.php";
     require_once "../../../Classes/Aluno.php";
@@ -272,7 +272,7 @@
             for ($c = 0; $c < $numeroDeDisciplinas; $c++) {
                 $materia = "";
                 $turmaDP = "";
-                if ($tipos_vinculos->offsetGet($c) === 'DP' or $tipos_vinculos->offsetGet($c) === 'TR' or $tipos_vinculos->offsetGet($c) === 'ES'){
+                if ($tipos_vinculos->offsetGet($c) !== 'RG'){
                     $materia = explode(' - ', $materias->offsetGet($c));
                     $turmaDP = $materia[1];
                     $materia = $materia[0];

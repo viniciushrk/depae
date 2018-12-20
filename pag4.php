@@ -43,7 +43,7 @@ if(isset($_SESSION['cargo'])){
     require_once "classes/Turma.php";
     require_once "classes/Turno.php";
     require_once "classes/Nivel_falta.php";
-    require_once "Classes/Motivo.php";
+    require_once "classes/Motivo.php";
 
     $cursos = new Curso();
     $turnos = new Turno();
@@ -193,7 +193,7 @@ if(isset($_SESSION['cargo'])){
 
                                 <select name="motivo" class="form-control" id="pena">
                                     <option value="" disabled selected>Escolha...</option>
-                                    <option value="" class="fufufufufu" disabled >Leve:</option>
+                                    <option value="" class="apagarAposSelecaoNivelFalta" disabled >Leve:</option>
 
                                     <?php
 
@@ -202,18 +202,18 @@ if(isset($_SESSION['cargo'])){
                                     foreach ($motivo as $motivo1){
                                         if ($motivo1['nivel_falta_idNivel_falta'] == 2){
                                             if ($nvl2){
-                                                echo "<option value=\"\" class='fufufufufu' disabled >Média:</option>";
+                                                echo "<option value=\"\" class='apagarAposSelecaoNivelFalta' disabled >Média:</option>";
                                                 $nvl2 = false;
                                             }
-                                            echo "<option joao='x2' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
+                                            echo "<option nivel_falta='2' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
                                         }elseif ($motivo1['nivel_falta_idNivel_falta'] == 3) {
                                             if ($nvl3){
-                                                echo "<option value=\"\" class='fufufufufu' disabled >Grave:</option>";
+                                                echo "<option value=\"\" class='apagarAposSelecaoNivelFalta' disabled >Grave:</option>";
                                                 $nvl3 = false;
                                             }
-                                            echo "<option joao='x3' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
+                                            echo "<option nivel_falta='3' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
                                         }else{
-                                            echo "<option joao='x1' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
+                                            echo "<option nivel_falta='1' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
                                         }
 
                                     }
