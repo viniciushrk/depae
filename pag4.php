@@ -19,7 +19,7 @@
                 for(var c = 0; c < turmas.length; c++) {
 
                     //alert(jo);
-                    $('<option>', {value: turmas[c]['serie'], class: 'f5'}).appendTo('#serie').html(turmas[c]['serie'] + "° Ano");
+                    $('<option>', {value: turmas[c]['serie'], class: 'f5'}).appendTo('#serie').html(turmas[c]['serie']);
                 }
 
             }
@@ -130,8 +130,9 @@ if(isset($_SESSION['cargo'])){
                                 <option value="" disabled selected>Escolha...</option>
 
                                 <?php
+                                    $series = array();
                                     foreach($turma as $turma1){
-                                        echo "<option value='".$turma1['idTurma']."'>".$turma1['serie']."</option>";
+                                        echo "<option class='f5' value='".$turma1['idTurma']."'>".$turma1['serie']."</option>";
                                     }
                                 ?>
 
@@ -158,7 +159,7 @@ if(isset($_SESSION['cargo'])){
 
                             <label for="nome">Nome</label>
 
-                            <select name="nome" class="form-control">
+                            <select name="nome" class="form-control" required>
 
                                     <option value="" disabled selected> escolha</option>
                                     <?php
@@ -173,7 +174,7 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-3">
                             <label for="nivelfalta">Nível da Falta</label>
-                            <select name="nivel_falta" class="form-control" id="nivel_falta" onchange="ns()">
+                            <select name="nivel_falta" class="form-control" id="nivel_falta" onclick="ns()">
                                 <option value="0" disabled selected>Escolha...</option>
                                 <?php
                                     foreach ($nivel_falta as $faltas){
@@ -191,7 +192,7 @@ if(isset($_SESSION['cargo'])){
                             <div class="form-group col-lg-12">
                                 <label for="motivo">Motivo</label>
 
-                                <select name="motivo" class="form-control" id="pena">
+                                <select name="motivo" class="form-control" id="pena" required>
                                     <option value="" disabled selected>Escolha...</option>
                                     <option value="" class="apagarAposSelecaoNivelFalta" disabled >Leve:</option>
 
@@ -205,15 +206,15 @@ if(isset($_SESSION['cargo'])){
                                                 echo "<option value=\"\" class='apagarAposSelecaoNivelFalta' disabled >Média:</option>";
                                                 $nvl2 = false;
                                             }
-                                            echo "<option nivel_falta='2' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
+                                            echo "<option class='nivel_falta2' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
                                         }elseif ($motivo1['nivel_falta_idNivel_falta'] == 3) {
                                             if ($nvl3){
                                                 echo "<option value=\"\" class='apagarAposSelecaoNivelFalta' disabled >Grave:</option>";
                                                 $nvl3 = false;
                                             }
-                                            echo "<option nivel_falta='3' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
+                                            echo "<option class='nivel_falta3' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
                                         }else{
-                                            echo "<option nivel_falta='1' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
+                                            echo "<option class='nivel_falta1' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
                                         }
 
                                     }
