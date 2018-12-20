@@ -151,6 +151,26 @@ class disciplina_aluno extends Conexao
         }
     }
 
+    public function verificaSeNaoExiste() {
+        try {
+            $con = $this->conecta();
+            $sql = $con->prepare('select faltas_justificadas from disciplina_aluno where disciplina_idDisciplina = ? and tipo_vinculo_idTipo_vinculo = ? and aluno_num_matricula = ? and turma_idTurma = ?');
+            $sql->bindValue(1, $this->disciplina_idDisciplina);
+            $sql->bindValue(2, $this->tipo_vinculo_idTipo_Vinculo);
+            $sql->bindValue(3, $this->aluno_num_matricula);
+            $sql->bindValue(4, $this->turma_idTurma);
+            $sql->execute();
+            $con = null;
+            if ($sql->rowCount() > 0) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function salvar()
     {
         try {
