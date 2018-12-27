@@ -45,7 +45,7 @@
       </li>
         <li class="nav-item">
             <a class="nav-link text-white text-dark:hover<?php if($page == "pag4"){ echo "active";}?>" href="index.php?page=Inserir_aluno&http_referer=<?php echo $page?>">
-                inserir aluno
+                Inserir aluno
             </a>
         </li>
     </ul>

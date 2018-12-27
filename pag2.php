@@ -35,7 +35,7 @@
             <a href="index.php?page=Inserir_aluno&http_referer=<?php echo $page?>">
                 <button type="button" class="btn btn-secondary">
                     <img class="img1 iconbranco" src="open-iconic-master/svg/plus.svg">
-                    inserir aluno
+                    Inserir aluno
                 </button>
             </a>
         </div>
