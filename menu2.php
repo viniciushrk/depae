@@ -49,8 +49,8 @@
             </a>
         </li>
     </ul>
-    <form action="logout.php" class="form-inline my-2 my-lg-0">
-      <button class="btn btn-danger my-2 my-sm-0"  type="submit">Sair</button>
-    </form>
+    <a href="logout.php" class="form-inline my-2 my-lg-0">
+      <button class="btn btn-danger my-2 my-sm-0" type="submit">Sair</button>
+    </a>
   </div>
 </nav>
