@@ -1,15 +1,17 @@
 <body>
 <form method="post" action="insereAtualiza.php">
     <?php
+    require_once "header.php";
     if(isset($_GET['erro'])){ ?>
         <div class="alert alert-danger">Senhas não conferem</div>
     <?php }
-    if(isset($_GET['id'])){
+
     require_once "classes/Servidor.php";
     require_once "classes/Cargo.php";
-    $servidor = new Servidor();
-    $servidor->selecionaPorIdServidor($_GET['id']);
 
+    if(isset($_GET['siape']) and isset($_GET['email'])){
+        $servidor = new Servidor();
+        $servidor->selecionaSiape($_GET['siape']);
     ?>
 
     <h1>Atualizar usuário</h1><br>
@@ -18,7 +20,7 @@
 
         <div class="form-group col-lg-6">
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" name="nome" id="nome" placeholder="nome" value="<?php echo $servidor->getNome();?>" disabled>
+            <input type="text" class="form-control" name="nome" id="nome" placeholder="<?php echo $servidor->getNome();?>" disabled>
         </div>
 
         <div class="form-group col-lg-6">
@@ -36,17 +38,15 @@
 
         <div class="form-group col-lg-3">
             <label for="cargo">Cargo</label>
-            <select name="cargo" class="form-control" disabled>
-                <option value="" disabled selected>Escolha...</option>
+           <!-- <select name="cargo" class="form-control" disabled>-->
                 <?php
-                //require_once "classes/Cargo.php";
-                $cargo = new Cargo();
-                $cargos = $cargo->listaCargos();
-                foreach ($cargos as $cargo) {?>
-                    <?php if ($_SESSION['cargo'] != 1 && $cargo['idCargo'] == 1) {continue;}?>
-                    <option value=<?php echo $cargo['idCargo']; if($servidor->getCargoIdcargo() == $cargo['idCargo']) echo "selected"; ?>><?php echo $cargo['cargo']?></option>
+                     $cargo= new Cargo();
+                    /* $cargos = $cargo->seleciona($servidor->getCargoIdCargo());*/
+                     $numServidor = $servidor->getCargoIdCargo();
+                     $cargos= $cargo->listaCargos();
+                    ?>
+                    <input class="form-control" value="<?php echo $numServidor; ?>" disabled>
 
-                <?php }?>
             </select>
         </div>
 
@@ -68,4 +68,5 @@
     </div>
 
 </form>
+<?php } ?>
 </body>
