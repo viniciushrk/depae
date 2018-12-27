@@ -22,15 +22,8 @@
     if($servidor->autenticarLogin($email, $senha)){
         session_start();
         $_SESSION['cargo'] = $servidor->getCargoIdcargo();
-        if($servidor->getCargoIdcargo() < 3){
-            header("location:index.php?page=pag2");
-        }elseif($servidor->getCargoIdcargo() == 3){
-            header("location:index.php?page=pag2");
 
-        }else{
-            header("location:index.php?page=pag2");
-        }
-
+        header("location:index.php?page=pag2");
     }else{
         header("location:index.php?erroLogin");
     }
