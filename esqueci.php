@@ -1,12 +1,4 @@
-<?php
 
-require_once "footer.php";
-
-?>
-<head>
-    <meta charset="UTF-8">
-
-</head>
 <body>
     <form method="get">
         <h1>Atualizar usuário</h1><br>
@@ -14,7 +6,7 @@ require_once "footer.php";
         <div class="form-row">
 
             <div class="form-group col-lg-6">
-                <label for="nome">Nome</label>
+                <label for="nome">Siape</label>
                 <input type="text" class="form-control" name="nome" id="nome" placeholder="nome" value="<?php ?>" required>
             </div>
 
