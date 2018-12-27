@@ -23,7 +23,7 @@ class Conexao
 
     public function conecta()
     {
-        $this->host = $this->host.":".$this->porta;
+        $this->host = $this->host.":".$this->port;
         try {
             $con = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->senha/*, array(PDO::ATTR_PERSISTENT => true,
                 PDO::ATTR_CASE => PDO::CASE_LOWER, PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION)*/);
