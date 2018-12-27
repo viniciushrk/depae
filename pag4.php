@@ -78,6 +78,43 @@ if(isset($_SESSION['cargo'])){
                 motivos[".$c."]['nivel_falta_idNivel_falta'] = ".$motivo[$c]['nivel_falta_idNivel_falta'].";
         ";
     }
+
+    $numDeTurmas = count($turma);
+    echo "var turmas = new Array(".$numDeTurmas.")";
+    echo "for (var c = 0; c < ".$numDeTurmas.";c++){
+                turmas[c] = {
+                                idTurma: '', 
+                                serie: '',
+                                periodo_letivo: '', 
+                                curso_idCurso: '',
+                                turno_idTurno: ''
+                            };
+            }
+    ";
+    for ($c = 0; $c < $numDeTurmas; $c++) {
+        echo "turmas[" . $c . "]['idTurma'] = " . $turma[$c]['idTurma'] . ";
+                turmas[" . $c . "]['serie'] = \"" . $turma[$c]['serie'] . "\";
+                turmas[" . $c . "]['periodo_letivo'] = \"" . $turma[$c]['periodo_letivo'] . "\";
+                turmas[" . $c . "]['curso_idCurso'] = " . $turma[$c]['curso_idCurso'] . ";
+                turmas[" . $c . "]['turno_idTurno'] = " . $turma[$c]['turno_idTurno'] . ";
+        ";
+    }
+
+    $numDeTurnos = count($turnos);
+    echo "var turnos = new Array(".$numDeTurnos.")";
+    echo "for (var c = 0; c < ".$numDeTurnos.";c++){
+                turnos[c] = {
+                                idTurno: '', 
+                                turno: ''
+                            };
+            }
+    ";
+    for ($c = 0; $c < $numDeTurnos; $c++) {
+        echo "turnos[" . $c . "]['idTurno'] = " . $turno[$c]['idTurno'] . ";
+                turnos[" . $c . "]['turno'] = \"" . $turno[$c]['turno'] . "\";
+        ";
+    }
+
     echo "</script>";
 
 
@@ -130,9 +167,9 @@ if(isset($_SESSION['cargo'])){
                                 <option value="" disabled selected>Escolha...</option>
 
                                 <?php
-                                    $series = array();
-                                    foreach($turma as $turma1){
-                                        echo "<option class='f5' value='".$turma1['idTurma']."'>".$turma1['serie']."</option>";
+                                    $series = (new Turma())->getTodasSeriesApenas();
+                                    foreach($series as $serie){
+                                        echo "<option class='f5' value='".$serie."'>".$serie."</option>";
                                     }
                                 ?>
 
@@ -246,8 +283,7 @@ if(isset($_SESSION['cargo'])){
 
 
 <?php
+    }else{
+        header("location: index.php");
 
-}else{
-    header("location: index.php");
-
-} ?>
+    } ?>
