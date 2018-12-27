@@ -20,6 +20,7 @@
     require_once "../../../Classes/Tipo_vinculo.php";
     require_once "../../../Classes/Turma.php";
     require_once "../../../Classes/Turno.php";
+    require_once "../../../Classes/StringList.php";
 
     //$mostrar = new LendoExcel();
     //$mostrar = $mostrar->InserirAluno();
@@ -35,45 +36,6 @@
     $total_linhas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
 
     //echo"".utf8_decode($objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1,16)->getValue());
-
-
-    class StringList implements ArrayAccess, IteratorAggregate
-    {
-        protected $items = [];
-
-        public function offsetSet($key, $value)
-        {
-            if (is_string($value)) {
-
-                $key ? $this->items[$key] = $value : array_push($this->items, $value);
-
-                return $this;
-            }
-
-            throw new \UnexpectedValueException('Essa é uma lista que aceita somente string');
-        }
-
-        public function offsetGet($key)
-        {
-            return $this->items[$key];
-        }
-
-        public function offsetExists($key)
-        {
-            return isset($this->items[$key]);
-        }
-
-        public function offsetUnset($key)
-        {
-            unset($this->items[$key]);
-        }
-
-        public function getIterator()
-        {
-            return new ArrayIterator($this->items);
-        }
-    }
-
 
     function converteParaUTF8($aString) {
         return iconv(mb_detect_encoding($aString), 'UTF-8', $aString);

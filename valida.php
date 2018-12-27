@@ -5,15 +5,20 @@
 </head>
 <body>
 <?php
+
+    ini_set('Display_errors' , 'On');
+    error_reporting(E_ALL);
     require_once("classes/Servidor.php");
+    print_r($_POST);
     if(isset($_POST['email']) && isset($_POST['senha'])){
         $email = $_POST['email'];
         $senha = crypt($_POST['senha'], "password");
     }else{
-        header("location:index.php&aqui");
+        header("location:index.php?aqui");
     }
 
     $servidor = new Servidor();
+
     if($servidor->autenticarLogin($email, $senha)){
         session_start();
         $_SESSION['cargo'] = $servidor->getCargoIdcargo();

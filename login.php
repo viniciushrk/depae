@@ -1,5 +1,4 @@
 <!-- Login -->
-
 <div class="container">
 
 
@@ -22,7 +21,13 @@
 
                     <!-- Checkbox Esqueci minha senha -->
                     <label>
+<<<<<<< HEAD
                         <a  href="index.php?page=esqueci.php">Esqueci minha senha</a>
+=======
+                        <a href="index.php?page=esqueci">
+                            Esqueci minha senha
+                        </a>
+>>>>>>> 4b6a1ccfc8791da56c8f2bccb55ddc130dd4b434
                     </label>
                         <br>
 

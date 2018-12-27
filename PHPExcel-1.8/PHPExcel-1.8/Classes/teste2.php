@@ -35,6 +35,10 @@ $total_linhas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
 //echo"".utf8_decode($objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1,16)->getValue());
 
 
+$matricula = null;
+$numTurma = null;
+$materia = null;
+
 for ($linha = 0; $linha<=$total_linhas; $linha++) {
     //Inseriro no Aluno
     $textoColuna1 = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $linha)->getValue();
@@ -63,6 +67,8 @@ for ($linha = 0; $linha<=$total_linhas; $linha++) {
 
     if(preg_match("/\ Nome:\ (.*?)/", $textoColuna1) == 1){
         $matricula = null;
+        $numTurma = null;
+        $materia = null;
         echo "<table border='2'>";
         echo"<br/>";
 
@@ -154,7 +160,7 @@ for ($linha = 0; $linha<=$total_linhas; $linha++) {
 
     }
 
-   if(isset($matricula)){
+   if($matricula !== null){
             $aluno = new Aluno();
             $aluno->seleciona($matricula);
 
@@ -182,10 +188,10 @@ for ($linha = 0; $linha<=$total_linhas; $linha++) {
         }
 
 
-        if(isset($numturma)){
+        if($numTurma !== null){
             $turma = new Turma();
-            if ($turma->selecionaPorIdTurma($numturma)){
-                $turma->setIdTurma($numturma);
+            if ($turma->selecionaPorIdTurma($numTurma)){
+                $turma->setIdTurma($numTurma);
                 $turma->setSerie($serie);
                 $turma->setPeriodoLetivo($periodoLetivo);
                 $turma->setCursoIdCurso($curso->getIdCurso());
@@ -198,11 +204,9 @@ for ($linha = 0; $linha<=$total_linhas; $linha++) {
 
                 $turma->salvar();
             }
-
-
         }
 
-        if(isset($materia)){
+        if($materia !== null){
             $disciplina = new Disciplina();
             $discAluno = new Disciplina_aluno();
 

@@ -39,6 +39,25 @@ class Turma extends Conexao
             return $e->getMessage();
         }
     }
+
+    public function getTodasSeriesApenas(){ //ARRUMA AQUI ORRAAAAAAAAA!!!!!!
+        try{
+            $con = $this->conecta();
+            $resul = $con->prepare("select serie from turma");
+            $resul->execute();
+            $con = null;
+            $resul = $resul->fetchAll();
+            $toReturn = array();
+            $i = 0;
+            foreach ($resul as $serie) {
+                //$toReturn[$i] = $serie[];
+            }
+        }catch (PDOException $e) {
+            return $e->getMessage();
+        }
+
+    }
+
     public function listaTurma()
     {
         try {
