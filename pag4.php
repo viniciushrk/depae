@@ -31,6 +31,9 @@
     //     $("[name='curso']").change(mycallback);
     //     $("[name='turno']").change(mycallback);
     // });
+
+    //function getAlunos(id){}
+
 </script>
 <?php
 
@@ -55,7 +58,7 @@ if(isset($_SESSION['cargo'])){
     $cursos = $cursos->listaCurso();
     $turnos = $turnos->listaTurnos();
     $turma = $turma->listaTurma();
-    $re = $aluno->listaAluno();
+    //$re = $aluno->listaAluno();
     $nivel_falta = $nivel_falta->listaFaltas();
     $motivo = $motivo->listaMotivo();
 
@@ -80,7 +83,7 @@ if(isset($_SESSION['cargo'])){
     }
 
     $numDeTurmas = count($turma);
-    echo "var turmas = new Array(".$numDeTurmas.")";
+    echo "var turmas = new Array(".$numDeTurmas.");";
     echo "for (var c = 0; c < ".$numDeTurmas.";c++){
                 turmas[c] = {
                                 idTurma: '', 
@@ -92,7 +95,7 @@ if(isset($_SESSION['cargo'])){
             }
     ";
     for ($c = 0; $c < $numDeTurmas; $c++) {
-        echo "turmas[" . $c . "]['idTurma'] = " . $turma[$c]['idTurma'] . ";
+        echo   "turmas[" . $c . "]['idTurma'] = \"" . $turma[$c]['idTurma'] . "\";
                 turmas[" . $c . "]['serie'] = \"" . $turma[$c]['serie'] . "\";
                 turmas[" . $c . "]['periodo_letivo'] = \"" . $turma[$c]['periodo_letivo'] . "\";
                 turmas[" . $c . "]['curso_idCurso'] = " . $turma[$c]['curso_idCurso'] . ";
@@ -101,7 +104,7 @@ if(isset($_SESSION['cargo'])){
     }
 
     $numDeTurnos = count($turnos);
-    echo "var turnos = new Array(".$numDeTurnos.")";
+    echo "var turnos = new Array(".$numDeTurnos.");";
     echo "for (var c = 0; c < ".$numDeTurnos.";c++){
                 turnos[c] = {
                                 idTurno: '', 
@@ -110,10 +113,13 @@ if(isset($_SESSION['cargo'])){
             }
     ";
     for ($c = 0; $c < $numDeTurnos; $c++) {
-        echo "turnos[" . $c . "]['idTurno'] = " . $turno[$c]['idTurno'] . ";
-                turnos[" . $c . "]['turno'] = \"" . $turno[$c]['turno'] . "\";
+        echo   "turnos[" . $c . "]['idTurno'] = " . $turnos[$c]['idTurno'] . ";
+                turnos[" . $c . "]['turno'] = \"" . $turnos[$c]['turno'] . "\";
         ";
     }
+
+
+
 
     echo "</script>";
 
@@ -137,7 +143,7 @@ if(isset($_SESSION['cargo'])){
 
                             <label for="curso">Curso</label>
 
-                            <select name="curso" id="curso" class="form-control" onchange="mecheTurno(this.value);mecheSerie(this.value, turno.value);mecheTurma(this.value, turno.value, serie.value)//mycallback(this.value, turno.value)">
+                            <select name="curso" id="curso" class="form-control" onclick="mecheTurno(this.value);mecheSerie(this.value, turno.value);mecheTurma(this.value, turno.value, serie.value)//mycallback(this.value, turno.value)">
                                 <option value="" disabled selected >Escolha...</option>
                                 <?php
                                     foreach ($cursos as $row) {
@@ -151,11 +157,11 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-3">
                             <label for="turno">Turno</label>
-                            <select name="turno" id="turno" class="form-control" onchange="mecheTurno(curso.value);mecheSerie(curso.value, this.value);mecheTurma(curso.value, this.value, serie.value)//mycallback(curso.value, this.value)">
+                            <select name="turno" id="turno" class="form-control" onclick="mecheTurno(curso.value);mecheSerie(curso.value, this.value);mecheTurma(curso.value, this.value, serie.value)//mycallback(curso.value, this.value)">
                                 <option value="" disabled selected >Escolha...</option>
                                 <?php
                                 foreach ($turnos as $row) {
-                                    echo "<option value='".$row['idTurno']."'>".$row['turno']."</option>";
+                                    echo "<option class='f5' value='".$row['idTurno']."'>".$row['turno']."</option>";
                                 }
                                 ?>
                             </select>
@@ -163,7 +169,7 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-2">
                             <label>Série</label>
-                            <select name="serie" id="serie" class="form-control option" onchange="mecheTurno(curso.value);mecheSerie(curso.value, turno.value);mecheTurma(curso.value, turno.value, this.value)">
+                            <select name="serie" id="serie" class="form-control option" onclick="mecheTurno(curso.value);mecheSerie(curso.value, turno.value);mecheTurma(curso.value, turno.value, this.value)">
                                 <option value="" disabled selected>Escolha...</option>
 
                                 <?php
@@ -182,7 +188,7 @@ if(isset($_SESSION['cargo'])){
                                 <option value="" disabled selected>Escolha...</option>
                                 <?php
                                     foreach ($turma as $turma2){
-                                        echo "<option value='".$turma2['idTurma']."'>".$turma2['idTurma']."</option>";
+                                        echo "<option class='f5' value='".$turma2['idTurma']."'>".$turma2['idTurma']."</option>";
                                 }
                                 ?>
                             </select>
@@ -200,10 +206,10 @@ if(isset($_SESSION['cargo'])){
 
                                     <option value="" disabled selected> escolha</option>
                                     <?php
-                                        foreach( $re  as $linha){
+                                        //foreach( $re  as $linha){
                                     ?>
-                                        <option value="1" id="nome"><?php echo $linha['nome'];?></option>
-                                    <?php }?>
+<!--                                        <option value="1" id="nome">--><?php //echo $linha['nome'];?><!--</option>-->
+                                    <?php //}?>
                             </select>
                             <!--<input type="text" class="form-control" name="nome" placeholder="nome" required>-->
 

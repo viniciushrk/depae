@@ -128,6 +128,38 @@ class Aluno extends Conexao
         }
     }
 
+    public function listaAlunosDaTurma($idTurma)
+    {
+        $numsMatricula = "";
+        try{
+            $con = $this->conecta();
+            $resul = $con->prepare("select distinct aluno_num_matricula from disciplina_aluno where turma_idTurma = ?");
+            $resul->bindValue(1, $idTurma);
+            $resul->execute();
+            $con = null;
+            $numsMatricula = $resul->fetchAll();
+        }catch(PDOException $e) {
+            return $e->getMessage();
+        }
+        //for () {}
+
+        try{
+            $con = $this->conecta();
+            $resul = $con->prepare("select from turma");
+            $resul->execute();
+            $con = null;
+            $resul = $resul->fetchAll();
+
+            $toReturn = array();
+            foreach ($resul as $line) {
+                $toReturn[] = $line['serie'];
+            }
+            return $toReturn;
+        }catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function salvar()
     {
         try {
