@@ -54,6 +54,23 @@ class Cargo extends Conexao
         }
     }
 
+    public function mostraCargoPorId($idcargo){
+        try{
+            $con = $this->conecta();
+            $resul = $con->prepare("select cargo.cargo from cargo where id = ?");
+            $resul->execute();
+            $con = null;
+            if ($resul->rowCount()>0){
+                $resul = $resul->fetch();
+                $this->cargo = $resul[0];
+            }else{
+                return 0;
+            }
+        }catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function listaCargos()
     {
         try {
