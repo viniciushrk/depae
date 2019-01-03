@@ -31,8 +31,27 @@
     //     $("[name='curso']").change(mycallback);
     //     $("[name='turno']").change(mycallback);
     // });
+    var _alunos;
+    function getAlunosDaTurma(idTurma){
+        if (idTurma !== "")
+            $.ajax({
+                url: "queries_aluno.php",
+                data: {
+                    turma: idTurma
+                },
+                type: 'POST',
+                success: function (result) {
+                    //alert(result);
+                    var alunos = JSON.parse(result);
+                    _alunos = alunos;
+                    $('select[name=nome] > .f5').remove();
+                    for(var c = 0; c < alunos.length; c++) {
+                        $('<option>', {value: alunos[c]['num_matricula'], class: 'f5'}).appendTo('select[name=nome]').html(alunos[c]['nome']);
+                    }
 
-    //function getAlunos(id){}
+                }
+            });
+    }
 
 </script>
 <?php
@@ -202,7 +221,7 @@ if(isset($_SESSION['cargo'])){
 
                             <label for="nome">Nome</label>
 
-                            <select name="nome" class="form-control" required>
+                            <select name="nome" class="form-control" required onclick="getAlunosDaTurma(turma.value)">
 
                                     <option value="" disabled selected> escolha</option>
                                     <?php
