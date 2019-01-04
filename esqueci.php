@@ -60,7 +60,7 @@ $mail = new PHPMailer();
     $mail->Username = 'depae.calama4@gmail.com';
     $mail->Password = 'depaecalama4';
 
-    $mail->set('depae.calama4@gmail.com', 'DEPAE');
+    $mail->set('depae.calama4@gmail.com','DEPAE');
     $mail->AddReplyTo('depae.calama4@gmail.com', 'DEPAE');
     $mail->Subject = 'Recuperação de senha';
 
