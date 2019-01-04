@@ -6,6 +6,8 @@
  * Time: 14:24
  */
 
+require_once "Conexao.php";
+
 class Aluno extends Conexao
 {
     private $num_matricula;
@@ -126,6 +128,32 @@ class Aluno extends Conexao
         } catch (PDOException $e) {
             return $e->getMessage();
         }
+    }
+
+    public function listaAlunosDaTurma($idTurma)
+    {
+        try{
+            $alunos = array();
+            $con = $this->conecta();
+            $resul = $con->prepare("select distinct aluno_num_matricula from disciplina_aluno where turma_idTurma = ?");
+            $resul->bindValue(1, $idTurma);
+            $resul->execute();
+            $con = null;
+            $numsMatricula = $resul->fetchAll();
+            foreach ($numsMatricula as $num_matricula) {
+                $con = $this->conecta();
+                $resul = $con->prepare("select * from aluno where num_matricula = ?");
+                $resul->bindValue(1, $num_matricula['aluno_num_matricula']);
+                $resul->execute();
+                $con = null;
+                $alunos[] = $resul->fetch();
+            }
+            return $alunos;
+        }catch(PDOException $e) {
+            return $e->getMessage();
+        }
+
+
     }
 
     public function salvar()

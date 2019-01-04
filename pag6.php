@@ -1,6 +1,7 @@
 <!-- Geral -->
 
-
+<?php require_once "header.php";
+?>
     <div class="form-group mx-auto mt-6">
         <label for="filtro">Filtros</label>
         <input name="filtroNome" class="form-control col-xl-2 col-lg-2 col" type="search" autofocus>
@@ -17,21 +18,45 @@
                     <th scope="col-xl-3">Turno</th>
                     <th scope="col">Nível da falta</th>
                     <th scope="col-xl-">Motivo</th>
-                    <th scope="col">Inicio penalidade</th>
-                    <th scope="col">Fim penalidade</th>
+                    <th scope="col">Inicio da penalidade</th>
+                    <th scope="col">Fim da penalidade</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td scope="row"></td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
+
+<!--                    mostra o nome do discente-->
+                    <td>
+                    </td>
+
+<!--                    mostra a turma do discente-->
+                    <td>
+                    </td>
+
+<!--                    mostra o curso do discente-->
+                    <td>
+                    </td>
+
+<!--                    mostra o turno do discente-->
+                    <td>
+                    </td>
+
+<!--                    mostra o nivel da falta causada pelo discente-->
+                    <td>
+                    </td>
+
+<!--                    mostra o motivo da falta-->
+                    <td>
+                    </td>
+
+<!--                    mostra a data de inicio da penalidade-->
+                    <td>
+                    </td>
+
+<!--                    mostra a data final da penalidade-->
+                    <td>
+                    </td>
                 </tr>
                 </tbody>
             </table>
