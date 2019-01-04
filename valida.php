@@ -12,7 +12,7 @@
     print_r($_POST);
     if(isset($_POST['email']) && isset($_POST['senha'])){
         $email = $_POST['email'];
-        $senha = $_POST['senha'];
+        $senha = crypt($_POST['senha'], "password");
     }else{
         header("location:index.php?aqui");
     }

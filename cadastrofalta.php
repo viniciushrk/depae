@@ -23,7 +23,7 @@
         $turma->setSerie($_POST['serie']);
         $turma->setTurma($_POST['turma']);
         $turma->setPeriodoLetivo(2018);
-        $turma->setTurnoIdTurno($_POST['turno']);
+        $turma->setTurnoIdturno($_POST['turno']);
         $turma->setCursoIdCurso($_POST['curso']);
 
 ?>
