@@ -235,9 +235,8 @@ if(isset($_SESSION['cargo'])){
                         </div>
 
                         <div class="form-group col-lg-3">
-                            <label for="turno">Data da falta</label>
+                            <label for="data">Data da falta</label>
                                 <input type="date" style="padding: 5px;" class="form-control" name="data" id="data">
-                            </select>
                         </div>
 
 
