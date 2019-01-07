@@ -235,6 +235,13 @@ if(isset($_SESSION['cargo'])){
                         </div>
 
                         <div class="form-group col-lg-3">
+                            <label for="turno">Data da falta</label>
+                                <input type="date" style="padding: 5px;" class="form-control" name="data" id="data">
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-lg-3">
                             <label for="nivelfalta">Nível da Falta</label>
                             <select name="nivel_falta" class="form-control" id="nivel_falta" onclick="ns()">
                                 <option value="0" disabled selected>Escolha...</option>
