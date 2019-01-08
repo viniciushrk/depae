@@ -26,15 +26,22 @@ class Motivo extends Conexao
                 $resul = $resul->fetch();
                 $this->idMotivo = $resul[0];
                 $this->nome = $resul[1];
-                $this->dias_penalidade = $resul[2];
-                $this->servidor_idServidor= $resul[3];
-                $this->nivel_falta_idNivel_falta= $resul[4];
+                $this->servidor_idServidor= $resul[2];
+                $this->nivel_falta_idNivel_falta= $resul[3];
             } else {
                 return 0;
             }
         } catch (PDOException $e) {
             return $e->getMessage();
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdMotivo()
+    {
+        return $this->idMotivo;
     }
 
     public function selecionaMotivoPorNome_e_NivelFalta($nome, $nivel_falta_idNivel_falta)
@@ -44,6 +51,42 @@ class Motivo extends Conexao
             $resul = $con->prepare("select * from motivo where nivel_falta_idNivel_falta = ? and nome like %?%");
             $resul->bindValue(1, $nivel_falta_idNivel_falta);
             $resul->bindValue(2, $nome);
+            $resul->execute();
+            $con = null;
+            if ($resul->rowCount() > 0) {
+                return $resul->fetchall();
+            } else {
+                return 0;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function selecionaMotivoPorNivelFalta($nivel_falta_idNivel_falta)
+    {
+        try {
+            $con = $this->conecta();
+            $resul = $con->prepare("select * from motivo where nivel_falta_idNivel_falta = ?");
+            $resul->bindValue(1, $nivel_falta_idNivel_falta);
+            $resul->execute();
+            $con = null;
+            if ($resul->rowCount() > 0) {
+                return $resul->fetchall();
+            } else {
+                return 0;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function selecionaMotivoPorNome($nome)
+    {
+        try {
+            $con = $this->conecta();
+            $resul = $con->prepare("select * from motivo where nome like %?%");
+            $resul->bindValue(1, $nome);
             $resul->execute();
             $con = null;
             if ($resul->rowCount() > 0) {

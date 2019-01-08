@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
 <?php
 /**
  * Created by PhpStorm.
@@ -6,36 +14,46 @@
  * Time: 14:14
  */
 
-require_once "classes/Servidor.php";
 require_once "classes/Faltas.php";
-require_once "classes/Nivel_falta.php";
 require_once "classes/Aluno.php";
-require_once "classes/Curso.php";
-require_once "classes/Turno.php";
-require_once "classes/Turma.php";
 require_once "classes/Motivo.php";
-session_start();
 
-$servidor = new Servidor();
-$Faltas = new Faltas();
-$Nivel_falta = new Nivel_falta();
-$Aluno = new Aluno();
-$Curso = new Curso();
-$Turno = new Turno();
-$Turma = new Turma();
-$Motivo = new Motivo();
+set_time_limit(5);
 
+$faltas = new Faltas();
+$aluno = new Aluno();
+$motivo = new Motivo();
 
-$Aluno->selecionaAlunosPorNome('nome');
-$Turma->selecionaPorIdTurma('idturma');
-$Curso->selecionaPorIdCurso($Turma->getCursoIdCurso());
-$Turno->seleciona($Turma->getTurnoIdTurno());
-//$Nivel_falta->selecionaPorNivelFalta($_POST('nivel_falta'));
-//$Motivo->selecionaMotivoPorNome_e_NivelFalta($_POST('nome'),$Nivel_falta->getNivelFalta());
-//$Motivo->selecionaMotivoPorNome($_POST('nome'));
-$Faltas->setAlunoNumMatricula($Aluno->getNumMatricula());
-$Faltas->setMotivoIdMotivo($Motivo->getIdMotivo());
-$Faltas->atualizar();
+$dataInicio = "";
+
+print_r($_POST);
+
+if ($aluno->seleciona($_POST['nome']) !== 0 && $motivo->seleciona($_POST['motivo']) !== 0) {
+    if (preg_match("/20[0-9][0-9]-[0-1][0-9]-[0-3][0-9]/", $_POST['data']) == 1) { // 2000-00-00<->2099-19-39 (quem se encarrega das datas válidas é o datepicker)
+        $dataInicio = $_POST['data'];
+
+    }elseif (preg_match("/[0-3][0-9]\/[0-1][0-9]\/[0-2]0[0-9][0-9]/", $_POST['data']) == 1) {
+        $data = explode('/', $_POST['data']);
+        $dataInicio = $data[2].'-'.$data[1].'-'.$data[0];
+
+    }else{
+        echo "Data errada";
+        header("Location: index.php?page=pag6");
+    }
+
+    $faltas->setDataInicio($dataInicio);
+    $faltas->setAlunoNumMatricula($_POST['nome']);
+    $faltas->setMotivoIdMotivo($_POST['motivo']);
+    $faltas->salvar();
+    echo "salvou!";
+}else{
+    echo "chamou errado fi";
+    header("Location: index.php?page=pag2");
+
+}
+
 header("Location: index.php?page=pag6");
 
 ?>
+</body>
+</html>

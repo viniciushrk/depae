@@ -26,14 +26,16 @@
         });
     }
 
-    // $(document).ready(function() {
-    //     $("#serie").click(mycallback);
-    //     $("[name='curso']").change(mycallback);
-    //     $("[name='turno']").change(mycallback);
-    // });
+    $(document).ready(function() {
+        var now = new Date();
+        data.value = now.getFullYear() + "-" + (now.getMonth() < 9 ? "0"+(now.getMonth()+1) : (now.getMonth()+1)) + "-" + (now.getDate() < 10 ? "0"+now.getDate() : now.getDate());
+    });
     var _alunos;
+
+    var lock = false; //trava para não recarregar a lista de nomes dos alunos
+
     function getAlunosDaTurma(idTurma){
-        if (idTurma !== "")
+        if (idTurma !== "" && lock)
             $.ajax({
                 url: "queries_aluno.php",
                 data: {
@@ -51,6 +53,7 @@
 
                 }
             });
+        lock = false;
     }
 
 </script>
@@ -162,7 +165,7 @@ if(isset($_SESSION['cargo'])){
 
                             <label for="curso">Curso</label>
 
-                            <select name="curso" id="curso" class="form-control" onclick="mecheTurno(this.value);mecheSerie(this.value, turno.value);mecheTurma(this.value, turno.value, serie.value)//mycallback(this.value, turno.value)">
+                            <select name="curso" id="curso" class="form-control" onchange="lock = true;" onclick="mecheTurno(this.value);mecheSerie(this.value, turno.value);mecheTurma(this.value, turno.value, serie.value)//mycallback(this.value, turno.value)">
                                 <option value="" disabled selected >Escolha...</option>
                                 <?php
                                     foreach ($cursos as $row) {
@@ -176,7 +179,7 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-3">
                             <label for="turno">Turno</label>
-                            <select name="turno" id="turno" class="form-control" onclick="mecheTurno(curso.value);mecheSerie(curso.value, this.value);mecheTurma(curso.value, this.value, serie.value)//mycallback(curso.value, this.value)">
+                            <select name="turno" id="turno" class="form-control" onchange="lock = true;" onclick="mecheTurno(curso.value);mecheSerie(curso.value, this.value);mecheTurma(curso.value, this.value, serie.value)//mycallback(curso.value, this.value)">
                                 <option value="" disabled selected >Escolha...</option>
                                 <?php
                                 foreach ($turnos as $row) {
@@ -188,7 +191,7 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-2">
                             <label>Série</label>
-                            <select name="serie" id="serie" class="form-control option" onclick="mecheTurno(curso.value);mecheSerie(curso.value, turno.value);mecheTurma(curso.value, turno.value, this.value)">
+                            <select name="serie" id="serie" class="form-control option" onchange="lock = true;" onclick="mecheTurno(curso.value);mecheSerie(curso.value, turno.value);mecheTurma(curso.value, turno.value, this.value)">
                                 <option value="" disabled selected>Escolha...</option>
 
                                 <?php
@@ -203,7 +206,7 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-2">
                             <label>Turma</label>
-                            <select name="turma" class="form-control">
+                            <select name="turma" id="turma" onchange="lock = true;" class="form-control">
                                 <option value="" disabled selected>Escolha...</option>
                                 <?php
                                     foreach ($turma as $turma2){
@@ -221,7 +224,7 @@ if(isset($_SESSION['cargo'])){
 
                             <label for="nome">Nome</label>
 
-                            <select name="nome" class="form-control" required onclick="getAlunosDaTurma(turma.value)">
+                            <select name="nome" class="form-control" id="nome" required onclick="getAlunosDaTurma(turma.value)">
 
                                     <option value="" disabled selected> escolha</option>
                                     <?php
@@ -232,6 +235,11 @@ if(isset($_SESSION['cargo'])){
                             </select>
                             <!--<input type="text" class="form-control" name="nome" placeholder="nome" required>-->
 
+                        </div>
+
+                        <div>
+                            <label for="data">Data da Falta</label>
+                            <input type="date" style="padding: 5px" class="form-control" name="data" min="2008-01-01" id="data">
                         </div>
 
                         <div class="form-group col-lg-3">
@@ -254,7 +262,7 @@ if(isset($_SESSION['cargo'])){
                             <div class="form-group col-lg-12">
                                 <label for="motivo">Motivo</label>
 
-                                <select name="motivo" class="form-control" id="pena" required>
+                                <select name="motivo" class="form-control" onchange="nivel_falta.value = pena[pena.value].classList[0].substr(11, 12)" id="pena" required>
                                     <option value="" disabled selected>Escolha...</option>
                                     <option value="" class="apagarAposSelecaoNivelFalta" disabled >Leve:</option>
 
