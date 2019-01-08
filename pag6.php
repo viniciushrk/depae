@@ -28,34 +28,59 @@
 
 <!--                    mostra o nome do discente-->
                     <td>
+                        <?php
+                            require_once "classes/Aluno.php";
+                            $aluno = new Aluno();
+                        ?>
                     </td>
 
 <!--                    mostra a turma do discente-->
                     <td>
+                        <?php
+
+                        ?>
                     </td>
 
 <!--                    mostra o curso do discente-->
                     <td>
+                        <?php
+
+                        ?>
                     </td>
 
 <!--                    mostra o turno do discente-->
                     <td>
+                        <?php
+
+                        ?>
                     </td>
 
 <!--                    mostra o nivel da falta causada pelo discente-->
                     <td>
+                        <?php
+
+                        ?>
                     </td>
 
 <!--                    mostra o motivo da falta-->
                     <td>
+                        <?php
+
+                        ?>
                     </td>
 
 <!--                    mostra a data de inicio da penalidade-->
                     <td>
+                        <?php
+
+                        ?>
                     </td>
 
 <!--                    mostra a data final da penalidade-->
                     <td>
+                        <?php
+
+                        ?>
                     </td>
                 </tr>
                 </tbody>

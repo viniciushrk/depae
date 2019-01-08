@@ -206,7 +206,7 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-2">
                             <label>Turma</label>
-                            <select name="turma" id="turma" onchange="lock = true;" class="form-control">
+                            <select name="turma" id="turma" onchange="lock = true;getAlunosDaTurma(this.value);" class="form-control">
                                 <option value="" disabled selected>Escolha...</option>
                                 <?php
                                 foreach ($turma as $turma2){
