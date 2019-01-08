@@ -47,7 +47,7 @@ if ($aluno->seleciona($_POST['nome']) !== 0 && $motivo->seleciona($_POST['motivo
     $faltas->salvar();
     echo "salvou!";
 }else{
-    echo "chamou errado fi";
+    echo "Erro";
     header("Location: index.php?page=pag2");
 
 }
