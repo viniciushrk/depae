@@ -19,18 +19,43 @@
                 for(var c = 0; c < turmas.length; c++) {
 
                     //alert(jo);
-                    $('<option>', {value: turmas[c]['serie'], class: 'f5'}).appendTo('#serie').html(turmas[c]['serie'] + "° Ano");
+                    $('<option>', {value: turmas[c]['serie'], class: 'f5'}).appendTo('#serie').html(turmas[c]['serie']);
                 }
 
             }
         });
     }
 
-    // $(document).ready(function() {
-    //     $("#serie").click(mycallback);
-    //     $("[name='curso']").change(mycallback);
-    //     $("[name='turno']").change(mycallback);
-    // });
+    $(document).ready(function() {
+        var now = new Date();
+        data.value = now.getFullYear() + "-" + (now.getMonth() < 9 ? "0"+(now.getMonth()+1) : (now.getMonth()+1)) + "-" + (now.getDate() < 10 ? "0"+now.getDate() : now.getDate());
+    });
+    var _alunos;
+
+    var lock = false; //trava para não recarregar a lista de nomes dos alunos
+
+    function getAlunosDaTurma(idTurma){
+        if (idTurma !== "" && lock)
+            $.ajax({
+                url: "queries_aluno.php",
+                data: {
+                    turma: idTurma
+                },
+                type: 'POST',
+                success: function (result) {
+                    //alert(result);
+                    var alunos = JSON.parse(result);
+                    _alunos = alunos;
+                    $('select[name=nome] > .f5').remove();
+                    for(var c = 0; c < alunos.length; c++) {
+                        $('<option>', {value: alunos[c]['num_matricula'], class: 'f5'}).appendTo('select[name=nome]').html(alunos[c]['nome']);
+                    }
+
+                }
+            });
+        lock = false;
+    }
+
 </script>
 <?php
 
@@ -43,7 +68,7 @@ if(isset($_SESSION['cargo'])){
     require_once "classes/Turma.php";
     require_once "classes/Turno.php";
     require_once "classes/Nivel_falta.php";
-    require_once "Classes/Motivo.php";
+    require_once "classes/Motivo.php";
 
     $cursos = new Curso();
     $turnos = new Turno();
@@ -55,7 +80,7 @@ if(isset($_SESSION['cargo'])){
     $cursos = $cursos->listaCurso();
     $turnos = $turnos->listaTurnos();
     $turma = $turma->listaTurma();
-    $re = $aluno->listaAluno();
+    //$re = $aluno->listaAluno();
     $nivel_falta = $nivel_falta->listaFaltas();
     $motivo = $motivo->listaMotivo();
 
@@ -78,16 +103,56 @@ if(isset($_SESSION['cargo'])){
                 motivos[".$c."]['nivel_falta_idNivel_falta'] = ".$motivo[$c]['nivel_falta_idNivel_falta'].";
         ";
     }
+
+    $numDeTurmas = count($turma);
+    echo "var turmas = new Array(".$numDeTurmas.");";
+    echo "for (var c = 0; c < ".$numDeTurmas.";c++){
+                turmas[c] = {
+                                idTurma: '', 
+                                serie: '',
+                                periodo_letivo: '', 
+                                curso_idCurso: '',
+                                turno_idTurno: ''
+                            };
+            }
+    ";
+    for ($c = 0; $c < $numDeTurmas; $c++) {
+        echo   "turmas[" . $c . "]['idTurma'] = \"" . $turma[$c]['idTurma'] . "\";
+                turmas[" . $c . "]['serie'] = \"" . $turma[$c]['serie'] . "\";
+                turmas[" . $c . "]['periodo_letivo'] = \"" . $turma[$c]['periodo_letivo'] . "\";
+                turmas[" . $c . "]['curso_idCurso'] = " . $turma[$c]['curso_idCurso'] . ";
+                turmas[" . $c . "]['turno_idTurno'] = " . $turma[$c]['turno_idTurno'] . ";
+        ";
+    }
+
+    $numDeTurnos = count($turnos);
+    echo "var turnos = new Array(".$numDeTurnos.");";
+    echo "for (var c = 0; c < ".$numDeTurnos.";c++){
+                turnos[c] = {
+                                idTurno: '', 
+                                turno: ''
+                            };
+            }
+    ";
+    for ($c = 0; $c < $numDeTurnos; $c++) {
+        echo   "turnos[" . $c . "]['idTurno'] = " . $turnos[$c]['idTurno'] . ";
+                turnos[" . $c . "]['turno'] = \"" . $turnos[$c]['turno'] . "\";
+        ";
+    }
+
+
+
+
     echo "</script>";
 
 
-?>
-<script src="assets/js/lixo.js"></script>
-<div class="mx-auto mt-6">
-    <div class="card ">
-        <div class="card-body ">
+    ?>
+    <script src="assets/js/lixo.js"></script>
+    <div class="mx-auto mt-6">
+        <div class="card ">
+            <div class="card-body ">
 
-            <form action="salvadorDeFaltas2000.php" method="post">
+                <form action="salvadorDeFaltas2000.php" method="post">
 
 
 
@@ -100,12 +165,12 @@ if(isset($_SESSION['cargo'])){
 
                             <label for="curso">Curso</label>
 
-                            <select name="curso" id="curso" class="form-control" onchange="mycallback(this.value, turno.value)">
+                            <select name="curso" id="curso" class="form-control" onchange="lock = true;" onclick="mecheTurno(this.value);mecheSerie(this.value, turno.value);mecheTurma(this.value, turno.value, serie.value)//mycallback(this.value, turno.value)">
                                 <option value="" disabled selected >Escolha...</option>
                                 <?php
-                                    foreach ($cursos as $row) {
-                                        echo "<option value='".$row['idCurso']."'>".$row['nome_curso']."</option>";
-                                    }
+                                foreach ($cursos as $row) {
+                                    echo "<option value='".$row['idCurso']."'>".$row['nome_curso']."</option>";
+                                }
                                 ?>
 
                             </select>
@@ -114,11 +179,11 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-3">
                             <label for="turno">Turno</label>
-                            <select name="turno" id="turno" class="form-control" onchange="mycallback(curso.value, this.value)">
+                            <select name="turno" id="turno" class="form-control" onchange="lock = true;" onclick="mecheTurno(curso.value);mecheSerie(curso.value, this.value);mecheTurma(curso.value, this.value, serie.value)//mycallback(curso.value, this.value)">
                                 <option value="" disabled selected >Escolha...</option>
                                 <?php
                                 foreach ($turnos as $row) {
-                                    echo "<option value='".$row['idTurno']."'>".$row['turno']."</option>";
+                                    echo "<option class='f5' value='".$row['idTurno']."'>".$row['turno']."</option>";
                                 }
                                 ?>
                             </select>
@@ -126,13 +191,14 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-2">
                             <label>Série</label>
-                            <select name="serie" id="serie" class="form-control option">
+                            <select name="serie" id="serie" class="form-control option" onchange="lock = true;" onclick="mecheTurno(curso.value);mecheSerie(curso.value, turno.value);mecheTurma(curso.value, turno.value, this.value)">
                                 <option value="" disabled selected>Escolha...</option>
 
                                 <?php
-                                    foreach($turma as $turma1){
-                                        echo "<option value='".$turma1['idTurma']."'>".$turma1['serie']."</option>";
-                                    }
+                                $series = (new Turma())->getTodasSeriesApenas();
+                                foreach($series as $serie){
+                                    echo "<option class='f5' value='".$serie."'>".$serie."</option>";
+                                }
                                 ?>
 
                             </select>
@@ -140,11 +206,11 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-2">
                             <label>Turma</label>
-                            <select name="turma" class="form-control">
+                            <select name="turma" id="turma" onchange="lock = true;getAlunosDaTurma(this.value);" class="form-control">
                                 <option value="" disabled selected>Escolha...</option>
                                 <?php
-                                    foreach ($turma as $turma2){
-                                        echo "<option value='".$turma2['idTurma']."'>".$turma2['idTurma']."</option>";
+                                foreach ($turma as $turma2){
+                                    echo "<option class='f5' value='".$turma2['idTurma']."'>".$turma2['idTurma']."</option>";
                                 }
                                 ?>
                             </select>
@@ -158,27 +224,32 @@ if(isset($_SESSION['cargo'])){
 
                             <label for="nome">Nome</label>
 
-                            <select name="nome" class="form-control">
+                            <select name="nome" class="form-control" id="nome" required onclick="getAlunosDaTurma(turma.value)">
 
-                                    <option value="" disabled selected> escolha</option>
-                                    <?php
-                                        foreach( $re  as $linha){
-                                    ?>
-                                        <option value="1" id="nome"><?php echo $linha['nome'];?></option>
-                                    <?php }?>
+                                <option value="" disabled selected> escolha</option>
+                                <?php
+                                //foreach( $re  as $linha){
+                                ?>
+                                <!--                                        <option value="1" id="nome">--><?php //echo $linha['nome'];?><!--</option>-->
+                                <?php //}?>
                             </select>
                             <!--<input type="text" class="form-control" name="nome" placeholder="nome" required>-->
 
                         </div>
 
+                        <div>
+                            <label for="data">Data da Falta</label>
+                            <input type="date" style="padding: 5px" class="form-control" name="data" min="2008-01-01" id="data">
+                        </div>
+
                         <div class="form-group col-lg-3">
                             <label for="nivelfalta">Nível da Falta</label>
-                            <select name="nivel_falta" class="form-control" id="nivel_falta" onchange="ns()">
+                            <select name="nivel_falta" class="form-control" id="nivel_falta" onclick="ns()">
                                 <option value="0" disabled selected>Escolha...</option>
                                 <?php
-                                    foreach ($nivel_falta as $faltas){
-                                        echo "<option value='".$faltas['idNivel_falta']."'>".$faltas['nivel_falta']."</option>";
-                                    }
+                                foreach ($nivel_falta as $faltas){
+                                    echo "<option value='".$faltas['idNivel_falta']."'>".$faltas['nivel_falta']."</option>";
+                                }
                                 ?>
                             </select>
                         </div>
@@ -191,9 +262,9 @@ if(isset($_SESSION['cargo'])){
                             <div class="form-group col-lg-12">
                                 <label for="motivo">Motivo</label>
 
-                                <select name="motivo" class="form-control" id="pena">
+                                <select name="motivo" class="form-control" onchange="nivel_falta.value = pena[pena.value].classList[0].substr(11, 12)" id="pena" required>
                                     <option value="" disabled selected>Escolha...</option>
-                                    <option value="" class="fufufufufu" disabled >Leve:</option>
+                                    <option value="" class="apagarAposSelecaoNivelFalta" disabled >Leve:</option>
 
                                     <?php
 
@@ -202,18 +273,18 @@ if(isset($_SESSION['cargo'])){
                                     foreach ($motivo as $motivo1){
                                         if ($motivo1['nivel_falta_idNivel_falta'] == 2){
                                             if ($nvl2){
-                                                echo "<option value=\"\" class='fufufufufu' disabled >Média:</option>";
+                                                echo "<option value=\"\" class='apagarAposSelecaoNivelFalta' disabled >Média:</option>";
                                                 $nvl2 = false;
                                             }
-                                            echo "<option joao='x2' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
+                                            echo "<option class='nivel_falta2' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
                                         }elseif ($motivo1['nivel_falta_idNivel_falta'] == 3) {
                                             if ($nvl3){
-                                                echo "<option value=\"\" class='fufufufufu' disabled >Grave:</option>";
+                                                echo "<option value=\"\" class='apagarAposSelecaoNivelFalta' disabled >Grave:</option>";
                                                 $nvl3 = false;
                                             }
-                                            echo "<option joao='x3' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
+                                            echo "<option class='nivel_falta3' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
                                         }else{
-                                            echo "<option joao='x1' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
+                                            echo "<option class='nivel_falta1' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
                                         }
 
                                     }
@@ -237,15 +308,14 @@ if(isset($_SESSION['cargo'])){
                         </div>
 
                     </div>
-            </form>
+                </form>
 
-        </div>
+            </div>
         </div>
     </div>
 
 
-<?php
-
+    <?php
 }else{
     header("location: index.php");
 

@@ -8,7 +8,7 @@
     <?php
 
    date_default_timezone_set("Brazil/East");
-    $uploaddir = './bd';
+    $uploaddir = 'bd/';
 
    // $uploadfile = $uploaddir.basename($_FILES['fileUpload']['name']);
     $uploadfile = $_FILES['fileUpload']['name'];
@@ -18,7 +18,7 @@
         $ext = strtolower(substr($uploadfile[$i], -4));
         $este = strtolower(pathinfo($uploadfile[$i], PATHINFO_EXTENSION));
         $new_name = date("Y.m.d-H.i.s") . $i . $ext;
-        if ($este == 'xls') {
+        if ($este == 'xls' || $este == 'xlsx') {
             //$uploadfile[$i]= $_FILES['fileUpload']['tmp_name'];
             if (move_uploaded_file($up[$i], $uploaddir . $new_name)) {
                 echo "<br/>";

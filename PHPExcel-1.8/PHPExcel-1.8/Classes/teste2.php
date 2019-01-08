@@ -10,13 +10,8 @@
      * Date: 27/10/2018
      * Time: 19:15
      */
-
-    echo crypt('oi', 'password');
-    echo "<br>";
-    echo crypt('oi', 'password');
-    echo "<br>";
-    echo crypt('oi', 'password');
-/*require_once "../../../Classes/Conexao.php";
+    set_time_limit(300);
+require_once "../../../Classes/Conexao.php";
 require_once "../../../Classes/Servidor.php";
 require_once "../../../Classes/Aluno.php";
 require_once "../../../Classes/Curso.php";
@@ -30,7 +25,7 @@ require_once "PHPExcel.php";
 
 $objreader = new PHPExcel_Reader_Excel5();
 $objreader->setReadDataOnly(true);
-$objPHPExcel = $objreader->load("Teste.xls");
+$objPHPExcel = $objreader->load("Teste3.xls");
 
 $colunas = $objPHPExcel->setActiveSheetIndex(0)->getHighestColumn();
 $total_colunas = PHPExcel_Cell::columnIndexFromString($colunas);
@@ -39,6 +34,10 @@ $total_linhas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
 
 //echo"".utf8_decode($objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1,16)->getValue());
 
+
+$matricula = null;
+$numTurma = null;
+$materia = null;
 
 for ($linha = 0; $linha<=$total_linhas; $linha++) {
     //Inseriro no Aluno
@@ -67,6 +66,9 @@ for ($linha = 0; $linha<=$total_linhas; $linha++) {
 
 
     if(preg_match("/\ Nome:\ (.*?)/", $textoColuna1) == 1){
+        $matricula = null;
+        $numTurma = null;
+        $materia = null;
         echo "<table border='2'>";
         echo"<br/>";
 
@@ -137,7 +139,7 @@ for ($linha = 0; $linha<=$total_linhas; $linha++) {
         echo "<th>" . substr(str_replace(' ','',$textoColuna27),7);
         echo "</th>";
 
-    }if (preg_match("/1(.*?)/", $textoColuna3) == 1){
+    }if (preg_match("/[1-4](.*?)/", $textoColuna3) == 1){
         echo "<table border='2'>";
         echo"<br/>";
 
@@ -158,69 +160,102 @@ for ($linha = 0; $linha<=$total_linhas; $linha++) {
 
     }
 
-    if(isset($matricula)){
-        $aluno = new Aluno();
-        $aluno->seleciona($matricula);
+   if($matricula !== null){
+            $aluno = new Aluno();
+            $aluno->seleciona($matricula);
 
-        $aluno->setNome($nome);
-        $aluno->setCpf($cpf);
-        $aluno->setDataNascimento($nasc);
-        $aluno->setOrgexp($org);
-        $aluno->setRg($rg);
+            $aluno->setNome($nome);
+            $aluno->setCpf($cpf);
+            $aluno->setDataNascimento($nasc);
+            $aluno->setOrgexp($org);
+            $aluno->setRg($rg);
 
-        $curso = new Curso();
-        $curso->selecionaPorNomeCurso($nomeCurso);
-
-        if ($curso->getNomeCurso() == "" or $curso->getNomeCurso() == null) {
-            $curso->atualizar();
-        }else{
-            $curso->setNomeCurso($nomeCurso);
-            $curso->salvar();
-        }
-
-        if ($aluno->getNumMatricula() == "" or $aluno->getNumMatricula() ==  null){
-            $aluno->setNumMatricula($matricula);
-            $aluno->salvar();
-        }else{
-            $aluno->atualizar();
-        }
-
-
-    }
-
-    if(isset($materia)){
-        $disciplina = new Disciplina();
-        $discAluno = new Disciplina_aluno();
-
-
-            $disciplina->setMateria($materia);
-            $disciplina->setCargaHoraria($cargaHoraria);
-
-            $discAluno->setDisciplinaIdDisciplina($disciplina->getIdDisciplina());
-            $discAluno->setAlunoNumMatricula($aluno->getNumMatricula());
-            $discAluno->setTipoVinculoIdTipoVinculo((new Tipo_vinculo())->getIdTipoVinculo());
-            $discAluno->setTurmaIdTurma($turma->getIdTurma());
-
-            if ($disciplina->getIdDisciplina() == '' or $disciplina->getIdDisciplina() == null){
-                $disciplina->salvar();
-            }else{
-                $disciplina->atualizar();
+            $curso = new Curso();
+            if($curso->selecionaPorNomeCurso($nomeCurso))
+            {
+                $curso->setNomeCurso($nomeCurso);
+                $curso->salvar();
             }
-            $discAluno->salvar();
+
+            if ($aluno->getNumMatricula() == "" or $aluno->getNumMatricula() ==  null){
+                $aluno->setNumMatricula($matricula);
+                $aluno->salvar();
+            }else{
+                $aluno->atualizar();
+            }
+
+
+        }
+
+
+        if($numTurma !== null){
+            $turma = new Turma();
+            if ($turma->selecionaPorIdTurma($numTurma)){
+                $turma->setIdTurma($numTurma);
+                $turma->setSerie($serie);
+                $turma->setPeriodoLetivo($periodoLetivo);
+                $turma->setCursoIdCurso($curso->getIdCurso());
+                if($turno == "MATUTINO"){
+                    $turma->setTurnoIdturno(1);
+                }elseif($turno == "VESPERTINO"){
+                    $turma->setTurnoIdturno(2);
+                }
+                //$turma->setTurnoIdturno(((new Turno())->selecionaTurnosPorTurno($turno))[0]['turno']);
+
+                $turma->salvar();
+            }
+        }
+
+        if($materia !== null){
+            $disciplina = new Disciplina();
+            $discAluno = new Disciplina_aluno();
+
+            //for ($c = 0; $c < $numeroDeDisciplinas; $c++) {
+                //$materia = "";
+                $turmaDP = "";
+                if ($status !== 'RG'){
+                    $materia = explode(' - ', $materia);
+                    $turmaDP = $materia[1];
+                    $materia = $materia[0];
+
+                }
+                $query = $disciplina->selecionaDisciplinasPorMateriaECargaHoraria($materia, $cargaHoraria, $curso->getIdCurso());
+
+                if (is_array($query)) {
+                    $discAluno->setDisciplinaIdDisciplina($query[0]['idDisciplina']); //arrumar
+                }else{
+
+
+                    $disciplina->setMateria($materia);
+                    $disciplina->setCargaHoraria($cargaHoraria);
+                    $disciplina->setCursoIdCurso($curso->getIdCurso());
+                    $disciplina->salvar();
+
+                    $discAluno->setDisciplinaIdDisciplina($disciplina->getIdDisciplina());
+
+                }
+
+                $discAluno->setAlunoNumMatricula($aluno->getNumMatricula());
+
+                $tipoVinculo = new Tipo_vinculo();
+                $tipoVinculo->selecionaPorTipoVinculo($status);
+
+
+                $discAluno->setTipoVinculoIdTipoVinculo($tipoVinculo->getIdTipoVinculo());
+                if ($turmaDP !== ""){
+                    $discAluno->setTurmaIdTurma($turmaDP);
+                }else{
+                    $discAluno->setTurmaIdTurma($turma->getIdTurma());
+                }
+
+                if ($discAluno->verificaSeNaoExiste()){
+                    $discAluno->salvar();
+                }
+            //}
+        }
 
     }
-
-}
     echo "</table>";
-
-
-
-
-
-    echo"<div class='text-center'>";
-         echo "<input type='submit' class='btn btn-success float-right' value='Confirmar' name='confirmar'>";
-         ?>
-         <a href="../../../index.php?page= <?php if (isset($_GET['http_referer'])) { echo $_GET['http_referer'];} ?>"> </a>
-    </div>
+?>
 </body>
-</html>*/
+</html>

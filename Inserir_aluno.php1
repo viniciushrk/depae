@@ -1,0 +1,135 @@
+<head>
+        <link rel="stylesheet" href="dropzone.css">
+        <link rel="stylesheet" href="drop.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="www-core-vflKmIJhL.css" rel="stylesheet">
+    <link href="www-guide-vflNDDMf7.css" rel="stylesheet">
+    <link href="www-onepick-vflsYL2Tr.css" rel="stylesheet">
+    <link href="www-pageframe-vfl2QekqP.css" rel="stylesheet">
+    <link href="www-player.css" rel="stylesheet">
+    <link href="www-spacecast-vflvydAHe.css" rel="stylesheet">
+    <link href="www-upload-vflHyPotE.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <link href="css" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- <form method="post" action="pag2.php" accept-charset="UTF-8"> -->
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<!--<div class="upload-widget-column upload-widget-left-column upload-initial-widget">
+    <div class="upload-widget yt-card branded-page-box-padding">
+        <div class="" id="upload-prompt-box" data-upload-button-id="main" style="visibility:visible; position: relative;">
+            --><div class="start-upload-button uploader-overlay-visible" id="start-upload-button-single">
+                <button class="yt-uix-button yt-uix-button-size-default yt-uix-button-default" type="button" onclick="return false;" aria-label="Procurar arquivos para envio" data-upload-button-id="main">
+                    <span class="yt-uix-button-content">
+                        <span class="init-upload-action-icon yt-sprite">
+
+                        </span>
+                        </span>
+                </button>
+                <h1>
+                    <span id="upload-button-text">
+                        Selecione o arquivo desejado
+                    </span>
+                    <span id="upload-drag-drop-description" class>
+                        ou arraste
+                    </span>
+                </h1>
+            </div>
+                    <div style="overflow: hidden; width: 275px; height: 154px; position: absolute; left: 219px; top: 65px;"></div>
+                <div style="overflow: hidden; width: 271px; height: 157px; position: absolute; left: 221px; top: 65px;">
+            <form  action="test.php"  method="post" type="file" enctype="multipart/form-data">
+            <div class="box_input">
+                <input class="dropzone" style="opacity: 0; font-size: 157px; height: 157px; position: relative; right: 0px; top: 0px;" id="drop-zone" width="200px" name="fileUpload[]" " type="file" multiple/>
+
+             </div>
+    <input class="btn btn-outline-success mb-3"  id="submit-all" type="submit" value="Enviar arquivo"/>
+    <!--renomeie o nome do arquivo <input name="nome" type="text" multiple="multiple">-->
+    <!--<input type="hidden" name="maximum-size" value="30000"/>-->
+</form>     </div>
+       <!-- </div>
+    </div>
+</div>-->
+</body>
+
+<script src="dropzone.js"></script>
+
+<script src="assets/js/jquery.min.js"></script>
+<script>
+    /*+ function($) {
+        'use strict';
+
+        // UPLOAD CLASS DEFINITION
+        // ======================
+
+        var dropZone = document.getElementById('drop-zone');
+        var uploadForm = document.getElementById('js-upload-form');
+
+        var startUpload = function(files) {
+            console.log(files)
+        }
+
+        uploadForm.addEventListener('submit', function(e) {
+            var uploadFiles = document.getElementById('js-upload-files').files;
+            e.preventDefault()
+
+            startUpload(uploadFiles)
+        })
+
+        dropZone.ondrop = function(e) {
+            e.preventDefault();
+            this.className = 'upload-drop-zone';
+
+            startUpload(e.dataTransfer.files)
+        }
+
+        dropZone.ondragover = function() {
+            this.className = 'upload-drop-zone drop';
+            return false;
+        }
+
+        dropZone.ondragleave = function() {
+            this.className = 'upload-drop-zone';
+            return false;
+        }
+
+    }(jQuery);*/
+   // var Dropzone=new Dropzone("div#meuId",{url:"test.php"});
+    // $("div#meuId").dropzone({url: "test.php"});
+    // Dropzone.options.dropz ={
+    //     paramName: 'fileUpload[]',
+    //     maxFilesize: 1000000,
+    //     dictDefaultMessage: "Arraste seus arquivos para cá!",
+    //     uploadMultiple: true,
+    //     autoProcessQueue: false,
+    //     acceptedFiles: "image/*,.xlsx,.xls,.pdf,.doc,.docx",
+    //     maxFiles:100,
+    //     init: function() {
+    //         var submitButton = document.querySelector("#submit-all")
+    //         var dropz = this; // closure
+    //
+    //         submitButton.addEventListener("click", function() {
+    //             dropz.processQueue(); // Tell Dropzone to process all queued files.
+    //         });
+    //
+    //         // You might want to show the submit button only when
+    //         // files are dropped here:
+    //         this.on("addedfile", function() {
+    //             // Show submit button here and/or inform user to click it.
+    //         });
+    //
+    //     }
+    // };
+
+</script>

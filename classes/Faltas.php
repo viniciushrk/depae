@@ -6,6 +6,8 @@
  * Time: 16:08
  */
 
+require_once "Conexao.php";
+
 class Faltas extends Conexao
 {
     private $idFaltas;
@@ -33,6 +35,22 @@ class Faltas extends Conexao
         } catch (PDOException $e) {
             return $e->getMessage();
         }
+    }
+
+    /**
+     * @param mixed $aluno_num_matricula
+     */
+    public function setAlunoNumMatricula($aluno_num_matricula): void
+    {
+        $this->aluno_num_matricula = $aluno_num_matricula;
+    }
+
+    /**
+     * @param mixed $motivo_idMotivo
+     */
+    public function setMotivoIdMotivo($motivo_idMotivo): void
+    {
+        $this->motivo_idMotivo = $motivo_idMotivo;
     }
     public function listaPessoas()
     {

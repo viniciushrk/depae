@@ -191,7 +191,7 @@ class Servidor extends Conexao
     {
         try {
             $con = $this->conecta();
-            $resul = $con->prepare("select * from servidor where login_email = ? and senha = ?");
+            $resul = $con->prepare("select * from servidor where login_email = ? and senha = ? and status = 'A'");
             $resul->bindValue(1, $email);
             $resul->bindValue(2, $senha);
             $resul->execute();
