@@ -1,3 +1,4 @@
+</div> <!--fecha div do header pra n conflitar com as regras css da página. -->
 <!-- Geral -->
 
 <?php
@@ -7,12 +8,12 @@
 ?>
 <br/>
     <div class="form-group mx-auto mt-5">
-        <label for="filtro">Filtros</label>
-        <input name="filtroNome" class="form-control col-xl-2 col-lg-2 col" type="search" autofocus>
-        <button class="btn btn-success my-2" name="exportBtn" type="submit" value="Exportar">Pesquisar</button>
+<!--        <label for="filtro">Filtros</label>-->
+<!--        <input name="filtroNome" class="form-control col-xl-2 col-lg-2 col" type="search" autofocus>-->
+<!--        <button class="btn btn-success my-2" name="exportBtn" type="submit" value="Exportar">Pesquisar</button>-->
     </div>
-        <div  class="m-auto" id="alvo">
-            <table class="table table-striped table-bordered table-hover table-condensed">
+        <div  class="m-auto width-fill-parent" id="alvo">
+            <table class="table table-striped table-bordered table-hover table-condensed width-fill-parent">
                 <thead>
                     <tr>
                         <th scope="col" style="text-align: center">Numero de Matrícula</th>
@@ -140,3 +141,4 @@
                 </tbody>
             </table>
         </div>
+<div> <!--reabre div para siular a div do header pro footer. -->

@@ -26,7 +26,7 @@
         <?php } ?>
 
         <li class="nav-item">
-            <a class="nav-link text-white text-dark:hover<?php if($page == "pag4"){ echo "active";}?>" href="index.php?page=pag4&http_referer=<?php echo $page?>">
+            <a class="nav-link text-white text-dark:hover<?php if($page == "pag4"){ echo "active";}?>" href="index.php?page=pag4&http_referer=<?php echo $page;?>">
                 Cadastro de falta
             </a>
         </li>
@@ -43,11 +43,15 @@
               <a class="dropdown-item <?php if($page == "pag9"){ echo "active";}?>" href="index.php?page=pag9">Falta</a>
             </div>
       </li>
+        <?php if($_SESSION['cargo'] < 3){  ?>
         <li class="nav-item">
-            <a class="nav-link text-white text-dark:hover<?php if($page == "pag4"){ echo "active";}?>" href="index.php?page=Inserir_aluno&http_referer=<?php echo $page?>">
-                Inserir aluno
-            </a>
+                <a class="nav-link text-white text-dark:hover<?php if ($page == "pag4") {
+                    echo "active";
+                } ?>" href="index.php?page=Inserir_aluno&http_referer=<?php echo $page; ?>">
+                    Inserir aluno
+                </a>
         </li>
+        <?php }?>
     </ul>
     <a href="logout.php" class="my-2 my-lg-0">
       <button class="btn btn-danger my-2 my-sm-0" type="submit">Sair</button>
