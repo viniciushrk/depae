@@ -52,11 +52,11 @@ class Faltas extends Conexao
     {
         $this->motivo_idMotivo = $motivo_idMotivo;
     }
-    public function listaPessoas()
+    public function listaFaltas()
     {
         try {
             $con = $this->conecta();
-            $resul = $con->prepare("select * from ");
+            $resul = $con->prepare("select * from faltas");
             $resul->execute();
             $con = null;
             return $resul->fetchAll();

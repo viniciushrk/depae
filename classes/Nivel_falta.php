@@ -10,7 +10,7 @@ class Nivel_falta extends Conexao
 {
     private $idNivel_falta;
     private $nivel_falta;
-    private $meses_penalidade;
+    private $dias_penalidade;
 
     public function selecionaPorId($idNivel_falta)
     {
@@ -24,7 +24,7 @@ class Nivel_falta extends Conexao
                 $resul = $resul->fetch();
                 $this->idNivel_falta = $resul[0];
                 $this->nivel_falta = $resul[1];
-                $this->meses_penalidade = $resul[2];
+                $this->dias_penalidade = $resul[2];
             } else {
                 return 0;
             }
@@ -93,9 +93,9 @@ class Nivel_falta extends Conexao
     /**
      * @return mixed 
      */
-    public function getMesesPenalidade()
+    public function getDiasPenalidade()
     {
-        return $this->meses_penalidade;
+        return $this->dias_penalidade;
     }
 
 }
