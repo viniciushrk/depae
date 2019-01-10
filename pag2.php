@@ -24,7 +24,7 @@
             </div>
             <!-- Botão de Relatório de falta página do Administrador -->
             <div class="col-auto mt-7">
-                <a href="index.php?page=pag3&http_referer=<?php echo $page?>">
+                <a href="index.php?page=pag6&http_referer=<?php echo $page?>">
                     <button type="button" class="btn btn-primary ButHome">
                         <img class="img1 iconbranco" src="open-iconic-master/svg/book.svg">
                         Relatório de falta
@@ -32,12 +32,15 @@
                 </a>
             </div>
         <div class="col-auto mt-7">
+
             <a href="index.php?page=Inserir_aluno&http_referer=<?php echo $page?>">
                 <button type="button" class="btn btn-secondary">
                     <img class="img1 iconbranco" src="open-iconic-master/svg/plus.svg">
                     Inserir aluno
                 </button>
             </a>
+
         </div>
 </div>
+
 

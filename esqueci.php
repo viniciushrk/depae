@@ -42,7 +42,7 @@
 </div>
 </body>
 <?php
-require_once "PHPMailer\_lib\class.phpmailer.php";
+/*require_once "PHPMailer\_lib\class.phpmailer.php";
 require_once ("classes/Servidor.php");
 $servidor = new Servidor();
 $servidor->selecionaSiape('siape');
@@ -71,4 +71,4 @@ $mail = new PHPMailer();
     $mail->Send();
 
 
-?>
+*/?>

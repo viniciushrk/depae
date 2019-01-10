@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
 
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/rules.css">
 
 </head>
 <body>
