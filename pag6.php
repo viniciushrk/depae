@@ -5,12 +5,13 @@
     require_once "classes/Faltas.php";
     $faltas = (new Faltas())->listaFaltas();
 ?>
-    <div class="form-group mx-auto mt-6">
+<br/>
+    <div class="form-group mx-auto mt-5">
         <label for="filtro">Filtros</label>
         <input name="filtroNome" class="form-control col-xl-2 col-lg-2 col" type="search" autofocus>
         <button class="btn btn-success my-2" name="exportBtn" type="submit" value="Exportar">Pesquisar</button>
     </div>
-        <div class="col-auto mx-auto">
+        <div  class="m-auto" id="alvo">
             <table class="table table-striped table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
@@ -20,7 +21,7 @@
                         <th class="col-xl-2" scope="col" style="text-align: center">Curso</th>
                         <th scope="col-xl-3" style="text-align: center">Turno</th>
                         <th scope="col" style="text-align: center">Nível da falta</th>
-                        <th scope="col-xl-" style="text-align: center">Motivo</th>
+                        <th scope="col-xl-3"     style="text-align: center">Motivo</th>
                         <th scope="col" style="text-align: center">Inicio da penalidade</th>
                         <th scope="col" style="text-align: center">Fim da penalidade</th>
                     </tr>
@@ -139,7 +140,3 @@
                 </tbody>
             </table>
         </div>
-
-
-
-
