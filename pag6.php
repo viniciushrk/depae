@@ -5,24 +5,25 @@
     require_once "classes/Faltas.php";
     $faltas = (new Faltas())->listaFaltas();
 ?>
-    <div class="form-group mx-auto mt-6">
+<br/>
+    <div class="form-group mx-auto mt-5">
         <label for="filtro">Filtros</label>
         <input name="filtroNome" class="form-control col-xl-2 col-lg-2 col" type="search" autofocus>
         <button class="btn btn-success my-2" name="exportBtn" type="submit" value="Exportar">Pesquisar</button>
     </div>
-        <div class="col-auto mx-auto">
+        <div  class="m-auto" id="alvo">
             <table class="table table-striped table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th class="col-xl-3" scope="col">Nome</th>
-                        <th scope="col">Turma</th>
-                        <th class="col-xl-2" scope="col">Curso</th>
-                        <th scope="col-xl-3">Turno</th>
-                        <th scope="col">Nível da falta</th>
-                        <th scope="col-xl-">Motivo</th>
-                        <th scope="col">Inicio da penalidade</th>
-                        <th scope="col">Fim da penalidade</th>
+                        <th scope="col" style="text-align: center">Numero de Matrícula</th>
+                        <th class="col-xl-3" scope="col" style="text-align: center">Nome</th>
+                        <th scope="col" style="text-align: center">Turma</th>
+                        <th class="col-xl-2" scope="col" style="text-align: center">Curso</th>
+                        <th scope="col-xl-3" style="text-align: center">Turno</th>
+                        <th scope="col" style="text-align: center">Nível da falta</th>
+                        <th scope="col-xl-3"     style="text-align: center">Motivo</th>
+                        <th scope="col" style="text-align: center">Inicio da penalidade</th>
+                        <th scope="col" style="text-align: center">Fim da penalidade</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,7 +57,12 @@
                         foreach ($faltas as $falta) {
                             ?>
                             <tr>
-                                <td scope="row"></td>
+<!--                                mostra o numero de matrícula do aluno -->
+                                <td scope="row">
+                                    <?php
+                                    echo $falta['aluno_num_matricula'];
+                                    ?>
+                                </td>
 
                                 <!--                    mostra o nome do discente-->
                                 <td>
@@ -134,7 +140,3 @@
                 </tbody>
             </table>
         </div>
-
-
-
-
