@@ -31,17 +31,17 @@
             </a>
         </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-white text-dark:hover" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <li class="nav-item text-dark:hover">
+        <a class="nav-link text-white text-dark:hover<?php if($page == "pag6"){ echo "active";}?>" href="index.php?page=pag6&http_referer=<?php echo $page;?>" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Relatório de falta
         </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item <?php if($page == "pag6"){ echo "active";}?>" href="index.php?page=pag6">Geral</a>
-              <a class="dropdown-item <?php if($page == "pag7"){ echo "active";}?>" href="index.php?page=pag7">Curso</a>
-              <a class="dropdown-item <?php if($page == "pag10"){ echo "active";}?>" href="index.php?page=pag10">Turma</a>
-              <a class="dropdown-item <?php if($page == "pag8"){ echo "active";}?>" href="index.php?page=pag8">Turno</a>
-              <a class="dropdown-item <?php if($page == "pag9"){ echo "active";}?>" href="index.php?page=pag9">Falta</a>
-            </div>
+<!--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--              <a class="dropdown-item --><?php //if($page == "pag6"){ echo "active";}?><!--" href="index.php?page=pag6">Geral</a>-->
+<!--              <a class="dropdown-item --><?php //if($page == "pag7"){ echo "active";}?><!--" href="index.php?page=pag7">Curso</a>-->
+<!--              <a class="dropdown-item --><?php //if($page == "pag10"){ echo "active";}?><!--" href="index.php?page=pag10">Turma</a>-->
+<!--              <a class="dropdown-item --><?php //if($page == "pag8"){ echo "active";}?><!--" href="index.php?page=pag8">Turno</a>-->
+<!--              <a class="dropdown-item --><?php //if($page == "pag9"){ echo "active";}?><!--" href="index.php?page=pag9">Falta</a>-->
+<!--            </div>-->
       </li>
         <?php if($_SESSION['cargo'] < 3){  ?>
         <li class="nav-item">
