@@ -260,7 +260,7 @@ class Servidor extends Conexao
           $resul->bindValue(1, $this->siape);
          $resul->bindValue(2, $this->login_email);
             $resul->bindValue(3, $this->nome);
-        $resul->bindValue(4, crypt($this->senha,'password'));
+        $resul->bindValue(4, $this->senha);
             $resul->bindValue(5, $this->getCargoIdcargo());
             $resul->bindValue(6, $this->getStatus());
             $resul->bindValue(7, $this->getIdServidor());
@@ -306,7 +306,7 @@ class Servidor extends Conexao
                 $resul->bindValue(1, $this->getNome());
                 $resul->bindValue(2, $this->getSiape());
                 $resul->bindValue(3, $this->getLoginEmail());
-                $resul->bindValue(4, crypt($this->getSenha(),'password'));
+                $resul->bindValue(4, $this->getSenha());
                 $resul->bindValue(5, $this->getCargoIdCargo());
                 $resul->bindValue(6, $this->getStatus());
                 $resul->execute();
