@@ -244,7 +244,7 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-3">
                             <label for="nivelfalta">Nível da Falta</label>
-                            <select name="nivel_falta" class="form-control" id="nivel_falta" onclick="ns()">
+                            <select name="nivel_falta" class="form-control" id="nivel_falta" onchange="ns()">
                                 <option value="0" disabled selected>Escolha...</option>
                                 <?php
                                 foreach ($nivel_falta as $faltas){
