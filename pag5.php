@@ -1,5 +1,5 @@
 <!-- Cadastro de usuário -->
-
+<?php if(isset($_SESSION['cargo']) && $_SESSION['cargo'] < 3){ ?>
 <div class="mx-auto mt-6">
     <div class="card">
         <div class="card-body">
@@ -135,7 +135,11 @@
                     </div>
 
             </form>
-                <?php } ?>
+                <?php }
+                }else{
+                    header("location: index.php");
+                }
+                ?>
         </div>
     </div>
 </div>

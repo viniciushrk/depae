@@ -43,15 +43,15 @@ class Turma extends Conexao
     public function getTodasSeriesApenas(){ //ARRUMA AQUI ORRAAAAAAAAA!!!!!!
         try{
             $con = $this->conecta();
-            $resul = $con->prepare("select serie from turma");
+            $resul = $con->prepare("select distinct serie from turma order by serie");
             $resul->execute();
             $con = null;
             $resul = $resul->fetchAll();
             $toReturn = array();
-            $i = 0;
             foreach ($resul as $serie) {
-                //$toReturn[$i] = $serie[];
+                $toReturn[] = $serie['serie'];
             }
+            return $toReturn;
         }catch (PDOException $e) {
             return $e->getMessage();
         }

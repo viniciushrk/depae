@@ -1,3 +1,4 @@
+
 <head>
     <link rel="stylesheet" href="dropzone.css">
     <link href="main.css" rel="stylesheet">
@@ -18,7 +19,8 @@
 <br/>
 
 <center>
-<form  action="teste.php" method="post" name="file" class="dropzone" enctype="multipart/form-data">
+<?php if(isset($_SESSION['cargo']) && $_SESSION['cargo'] < 3){?>
+    <form  action="teste.php" method="post" name="file" class="dropzone" enctype="multipart/form-data">
 
     <!--   <div class="form-inline" style="border: 1px solid red; margin: 1px 20px 80px 99px; padding: 50px" >-->
     <div class="form-group ">
@@ -107,3 +109,8 @@
     // };
 
 </script>
+<?php
+}else{
+    header("location: index.php");
+}
+?>

@@ -59,7 +59,7 @@
 </script>
 <?php
 
-if(isset($_SESSION['cargo'])){
+if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 4){
 
 
     require_once "classes/Servidor.php";
@@ -244,7 +244,7 @@ if(isset($_SESSION['cargo'])){
 
                         <div class="form-group col-lg-3">
                             <label for="nivelfalta">Nível da Falta</label>
-                            <select name="nivel_falta" class="form-control" id="nivel_falta" onchange="ns()">
+                            <select name="nivel_falta" class="form-control" id="nivel_falta" onclick="ns()">
                                 <option value="0" disabled selected>Escolha...</option>
                                 <?php
                                 foreach ($nivel_falta as $faltas){
@@ -320,3 +320,4 @@ if(isset($_SESSION['cargo'])){
     header("location: index.php");
 
 } ?>
+

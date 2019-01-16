@@ -23,14 +23,25 @@
                     Usuários
                 </a>
             </li>
+        <?php }
+
+        if($_SESSION['cargo'] < 3){ /*caso seja menor que o tecnico admnistrativo*/
+        ?>
+
+        <li class="nav-item">
+            <a class="nav-link text-white text-dark:hover<?php if($page == "pag5"){ echo "active";}?>" href="index.php?page=pag5&http_referer=<?php echo $page;?>">
+                Cadastro de Usuário
+            </a>
+        </li>
         <?php } ?>
+        <?php if($_SESSION['cargo'] < 4){?>
 
         <li class="nav-item">
             <a class="nav-link text-white text-dark:hover<?php if($page == "pag4"){ echo "active";}?>" href="index.php?page=pag4&http_referer=<?php echo $page;?>">
                 Cadastro de falta
             </a>
         </li>
-
+        <?php } ?>
       <li class="nav-item text-dark:hover">
         <a class="nav-link text-white text-dark:hover<?php if($page == "pag6"){ echo "active";}?>" href="index.php?page=pag6&http_referer=<?php echo $page;?>" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Relatório de falta
@@ -58,3 +69,4 @@
     </a>
   </div>
 </nav>
+
