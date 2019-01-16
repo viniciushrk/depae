@@ -101,7 +101,7 @@ class Servidor extends Conexao
         try {
             $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where siape = ?");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, senha, cargo_idcargo, status from servidor where siape = ?");
             $resul->bindValue(1, $siape);
             $resul->execute();
             $con = null;
@@ -126,7 +126,7 @@ class Servidor extends Conexao
         try {
             $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where login_servidor = ?");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, senha, cargo_idcargo, status from servidor where login_servidor = ?");
             $resul->bindValue(1, $login_email);
             $resul->execute();
             $con = null;
@@ -151,7 +151,7 @@ class Servidor extends Conexao
         try {
             $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where cargo_idCargo = ?");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, senha, cargo_idcargo, status from servidor where cargo_idCargo = ?");
             $resul->bindValue(1, $cargo_idCargo);
             $resul->execute();
             $con = null;
@@ -176,7 +176,7 @@ class Servidor extends Conexao
         try {
             $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where login_email = ?");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, senha, cargo_idcargo, status from servidor where login_email = ?");
             $resul->bindValue(1, $login_email);
             $resul->execute();
             $con = null;
@@ -201,7 +201,7 @@ class Servidor extends Conexao
         try {
             $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where login_email = ? and senha = ? and status = 'A'");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, senha, cargo_idcargo, status from servidor where login_email = ? and senha = ? and status = 'A'");
             $resul->bindValue(1, $email);
             $resul->bindValue(2, $obj->encrypt($senha));
             $resul->execute();
