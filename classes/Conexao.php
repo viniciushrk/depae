@@ -27,7 +27,7 @@ class Conexao
         try {
             $con = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->senha/*, array(PDO::ATTR_PERSISTENT => true,
                 PDO::ATTR_CASE => PDO::CASE_LOWER, PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION)*/);
-            $con->query("SET NAMES utf8");
+            $con->query("SET NAMES utf8; SELECT @aes_key_for_passwd:='39IsoQcrzyblPAEZ';");
             return $con;
         } catch (PDOException $e) {
             echo $e->getMessage();
