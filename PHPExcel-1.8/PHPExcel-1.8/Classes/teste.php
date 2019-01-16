@@ -10,7 +10,38 @@
      * Date: 27/10/2018
      * Time: 19:15
      */
-    set_time_limit(300);
+
+        require_once "../../../classes/php-mysql-aes-crypt-master/src/Crypter.php";
+        require_once "../../../classes/Conexao.php";
+
+        $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
+
+        echo $obj->decrypt($obj->encrypt("AAA"));
+        echo "<br />";
+        echo $obj->encrypt("lalala");
+        echo "<br />";
+        $con = new Conexao();
+        $con = $con->conecta();
+        $r = $con->prepare("DROP TABLE IF EXISTS teste; CREATE TABLE IF NOT EXISTS teste(campo varbinary(255)); insert into teste(campo) values(?)");
+        $r->bindValue(1, $obj->encrypt("lalala2"));
+//        $r = $con->prepare("insert into teste(campo) values('hahaha')");
+
+        $r->execute();
+        $con = null;
+        print_r($r->errorInfo());
+
+        $con = new Conexao();
+        $con = $con->conecta();
+//        $r = $con->prepare("select cast(AES_ENCRYPT(campo, @aes_key_for_passwd) as binary) from teste");
+        $r = $con->prepare("select campo from teste");
+        $r->execute();
+        $con = null;
+        $r = $r->fetchAll();
+        print_r($r);
+        echo $obj->decrypt($r[0][0]);
+
+
+    /*set_time_limit(300);
     require_once "../../../Classes/Conexao.php";
     require_once "../../../Classes/Servidor.php";
     require_once "../../../Classes/Aluno.php";
@@ -281,4 +312,4 @@
     echo "</table>";
 
     echo"</body>";
-echo"</html>";
+echo"</html>";*/

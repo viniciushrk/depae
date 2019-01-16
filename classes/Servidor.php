@@ -6,9 +6,10 @@
  * Time: 14:53
  */
 require_once "Conexao.php";
-
+require_once "php-mysql-aes-crypt-master/src/Crypter.php";
 class Servidor extends Conexao
 {
+
     private $idServidor;
     private $siape;
     private $login_email;
@@ -44,8 +45,9 @@ class Servidor extends Conexao
     public function selecionaPorIdServidor($idServidor)
     {
         try {
+            $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select * from servidor where idServidor = ?");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, senha, cargo_idcargo, status from servidor where idServidor = ?");
             $resul->bindValue(1, $idServidor);
             $resul->execute();
             $con = null;
@@ -55,7 +57,7 @@ class Servidor extends Conexao
                 $this->siape = $resul[1];
                 $this->login_email = $resul[2];
                 $this->nome = $resul[3];
-                $this->senha = $resul[4];
+                $this->senha = $obj->decrypt($resul[4]);
                 $this->cargo_idCargo = $resul[5];
                 $this->status = $resul[6];
 
@@ -74,29 +76,32 @@ class Servidor extends Conexao
     {
         $this->status = $status;
     }
-    public function selecionaServidoresPorNome($nome)
-    {
-        try {
-            $con = $this->conecta();
-            $resul = $con->prepare("select * from servidor where nome like %?%");
-            $resul->bindValue(1, $nome);
-            $resul->execute();
-            $con = null;
-            if ($resul->rowCount() > 0) {
-                return $resul->fetchall();
-            } else {
-                return 0;
-            }
-        } catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
+
+//    public function selecionaServidoresPorNome($nome)
+//    {
+//        try {
+//            $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
+//            $con = $this->conecta();
+//            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where nome like %?%");
+//            $resul->bindValue(1, $nome);
+//            $resul->execute();
+//            $con = null;
+//            if ($resul->rowCount() > 0) {
+//                return $resul->fetchall();
+//            } else {
+//                return 0;
+//            }
+//        } catch (PDOException $e) {
+//            return $e->getMessage();
+//        }
+//    }
 
     public function selecionaSiape($siape)
     {
         try {
+            $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select * from servidor where siape = ?");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where siape = ?");
             $resul->bindValue(1, $siape);
             $resul->execute();
             $con = null;
@@ -106,7 +111,7 @@ class Servidor extends Conexao
                 $this->siape = $resul[1];
                 $this->login_email = $resul[2];
                 $this->nome = $resul[3];
-                $this->senha = $resul[4];
+                $this->senha = $obj->decrypt($resul[4]);
                 $this->cargo_idCargo = $resul[5];
             } else {
                 return 0;
@@ -115,11 +120,13 @@ class Servidor extends Conexao
             return $e->getMessage();
         }
     }
+
     public function selecionaLoginEmail($login_email)
     {
         try {
+            $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select * from servidor where login_servidor = ?");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where login_servidor = ?");
             $resul->bindValue(1, $login_email);
             $resul->execute();
             $con = null;
@@ -129,7 +136,7 @@ class Servidor extends Conexao
                 $this->siape = $resul[1];
                 $this->login_email = $resul[2];
                 $this->nome = $resul[3];
-                $this->senha = $resul[4];
+                $this->senha = $obj->decrypt($resul[4]);
                 $this->cargo_idCargo = $resul[5];
             } else {
                 return 0;
@@ -142,8 +149,9 @@ class Servidor extends Conexao
     public function selecionaPorCargo($cargo_idCargo)
     {
         try {
+            $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select * from servidor where cargo_idCargo = ?");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where cargo_idCargo = ?");
             $resul->bindValue(1, $cargo_idCargo);
             $resul->execute();
             $con = null;
@@ -153,7 +161,7 @@ class Servidor extends Conexao
                 $this->siape = $resul[1];
                 $this->login_email = $resul[2];
                 $this->nome = $resul[3];
-                $this->senha = $resul[4];
+                $this->senha = $obj->decrypt($resul[4]);
                 $this->cargo_idCargo = $resul[5];
             } else {
                 return 0;
@@ -166,8 +174,9 @@ class Servidor extends Conexao
     public function selecionaPorLoginEmail($login_email)
     {
         try {
+            $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select * from servidor where login_email = ?");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where login_email = ?");
             $resul->bindValue(1, $login_email);
             $resul->execute();
             $con = null;
@@ -177,7 +186,7 @@ class Servidor extends Conexao
                 $this->siape = $resul[1];
                 $this->login_email = $resul[2];
                 $this->nome = $resul[3];
-                $this->senha = $resul[4];
+                $this->senha = $obj->decrypt($resul[4]);
                 $this->cargo_idCargo = $resul[5];
             } else {
                 return 0;
@@ -190,10 +199,11 @@ class Servidor extends Conexao
     public function autenticarLogin($email, $senha)
     {
         try {
+            $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
-            $resul = $con->prepare("select * from servidor where login_email = ? and senha = ? and status = 'A'");
+            $resul = $con->prepare("select idServidor, siape, login_email, nome, cast(senha as binary), cargo_idcargo, status from servidor where login_email = ? and senha = ? and status = 'A'");
             $resul->bindValue(1, $email);
-            $resul->bindValue(2, $senha);
+            $resul->bindValue(2, $obj->encrypt($senha));
             $resul->execute();
             $con = null;
             if ($resul->rowCount() > 0) {
@@ -202,7 +212,7 @@ class Servidor extends Conexao
                 $this->siape = $resul[1];
                 $this->login_email = $resul[2];
                 $this->nome = $resul[3];
-                $this->senha = $resul[4];
+                $this->senha = $obj->decrypt($resul[4]);
                 $this->cargo_idCargo = $resul[5];
                 return true;
             } else {
@@ -255,12 +265,13 @@ class Servidor extends Conexao
     public function atualizar()
     {
         try {
+            $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
             $con = $this->conecta();
             $resul = $con->prepare("update servidor set siape= ?, login_email= ?, nome= ?, senha= ?, cargo_idCargo = ?, status = ? where idServidor = ?");
           $resul->bindValue(1, $this->siape);
          $resul->bindValue(2, $this->login_email);
             $resul->bindValue(3, $this->nome);
-        $resul->bindValue(4, $this->senha);
+        $resul->bindValue(4,$obj->encrypt($this->senha));
             $resul->bindValue(5, $this->getCargoIdcargo());
             $resul->bindValue(6, $this->getStatus());
             $resul->bindValue(7, $this->getIdServidor());
@@ -273,40 +284,17 @@ class Servidor extends Conexao
        }
    }
 
-
-    public function excluir()
-    {
-        if (!empty($this->idServidor)) {
-            try {
-                $con = $this->conecta();
-                $resul = $con->prepare("delete servidor where idServidor = ?");
-                $resul->bindValue(1, $this->idServidor);
-                $resul->execute();
-                $con = null;
-                return true;
-            } catch
-            (PDOException $e) {
-                return $e->getMessage();
-            }
-        }else{
-            $this->setSiape(null);
-            $this->setLoginEmail(null);
-            $this->setNome(null);
-            $this->setSenha(null);
-            $this->cargo_idCargo = null;
-        }
-    }
-
     public function salvar()
     {
         if (empty($this->idServidor)) {
             try {
+                $obj = new \NoProtocol\Encryption\MySQL\AES\Crypter("39IsoQcrzyblPAEZ");
                 $con = $this->conecta();
                 $resul = $con->prepare("insert into servidor(nome, siape, login_email, senha, cargo_idCargo, status) values(?,?,?,?,?,?)");
                 $resul->bindValue(1, $this->getNome());
                 $resul->bindValue(2, $this->getSiape());
                 $resul->bindValue(3, $this->getLoginEmail());
-                $resul->bindValue(4, $this->getSenha());
+                $resul->bindValue(4, $obj->encrypt($this->getSenha()));
                 $resul->bindValue(5, $this->getCargoIdCargo());
                 $resul->bindValue(6, $this->getStatus());
                 $resul->execute();
@@ -319,6 +307,30 @@ class Servidor extends Conexao
             $this->atualizar();
         }
     }
+
+//    public function excluir()
+//    {
+//        if (!empty($this->idServidor)) {
+//            try {
+//                $con = $this->conecta();
+//                $resul = $con->prepare("delete servidor where idServidor = ?");
+//                $resul->bindValue(1, $this->idServidor);
+//                $resul->execute();
+//                $con = null;
+//                return true;
+//            } catch
+//            (PDOException $e) {
+//                return $e->getMessage();
+//            }
+//        }else{
+//            $this->setSiape(null);
+//            $this->setLoginEmail(null);
+//            $this->setNome(null);
+//            $this->setSenha(null);
+//            $this->cargo_idCargo = null;
+//        }
+//    }
+
 
     /**
      * @return mixed
@@ -391,6 +403,5 @@ class Servidor extends Conexao
     {
         $this->senha = $senha;
     }
-
 
 }
