@@ -37,10 +37,29 @@
                     </tr>
                     <tr id="filtros_multiselect">
                         <th scope="col-auto" class="align-content-center ">
-                            <select class="multiselects" name="curso" id="curso" disabled="true"></select>
-                            <select class="multiselects" name="ano" id="ano" disabled="true"></select>
-                            <select class="multiselects" name="turno" id="turno" disabled="true"></select>
-                            <select class="multiselects" name="turma" id="turma" disabled="true"></select>
+<!--                            multiselect dos cursos-->
+                            Curso:
+                            <select class="multiselects" name="curso" id="curso" disabled="true">
+
+                            </select>
+
+<!--                            multiselect dos anos-->
+                            Ano:
+                            <select class="multiselects" name="ano" id="ano" disabled="true">
+
+                            </select>
+
+<!--                            multiselect dos turnos-->
+                            Turno:
+                            <select class="multiselects" name="turno" id="turno" disabled="true">
+
+                            </select>
+
+<!--                            multiselect das turmas-->
+                            Turma:
+                            <select class="multiselects" name="turma" id="turma" disabled="true">
+
+                            </select>
                         </th>
                     </tr>
                     <tr>
