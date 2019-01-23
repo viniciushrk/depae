@@ -2,29 +2,29 @@
 <script src="assets/js/jquery.min.js"></script>
 <script type="application/javascript">
 
-    function mycallback (curso, turno) {
-        alert(curso + " " + turno);
-        $.ajax({
-            url: "queries_turma.php",
-            data: {
-                curso: curso,
-                turno: turno
-            },
-            type: 'POST',
-            success: function (result) {
-
-                var turmas = JSON.parse(result);//alert(result);
-
-                $('#serie > .f5').remove();
-                for(var c = 0; c < turmas.length; c++) {
-
-                    //alert(jo);
-                    $('<option>', {value: turmas[c]['serie'], class: 'f5'}).appendTo('#serie').html(turmas[c]['serie']);
-                }
-
-            }
-        });
-    }
+    // function mycallback (curso, turno) {
+    //     alert(curso + " " + turno);
+    //     $.ajax({
+    //         url: "queries_turma.php",
+    //         data: {
+    //             curso: curso,
+    //             turno: turno
+    //         },
+    //         type: 'POST',
+    //         success: function (result) {
+    //
+    //             var turmas = JSON.parse(result);//alert(result);
+    //
+    //             $('#serie > .f5').remove();
+    //             for(var c = 0; c < turmas.length; c++) {
+    //
+    //                 //alert(jo);
+    //                 $('<option>', {value: turmas[c]['serie'], class: 'f5'}).appendTo('#serie').html(turmas[c]['serie']);
+    //             }
+    //
+    //         }
+    //     });
+    // }
 
     $(document).ready(function() {
         var now = new Date();
@@ -244,7 +244,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 4){
 
                         <div class="form-group col-lg-3">
                             <label for="nivelfalta">Nível da Falta</label>
-                            <select name="nivel_falta" class="form-control" id="nivel_falta" onclick="ns()">
+                            <select name="nivel_falta" class="form-control" id="nivel_falta" onchange="ns()">
                                 <option value="0" disabled selected>Escolha...</option>
                                 <?php
                                 foreach ($nivel_falta as $faltas){
@@ -264,7 +264,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 4){
 
                                 <select name="motivo" class="form-control" onchange="nivel_falta.value = pena[pena.value].classList[0].substr(11, 12)" id="pena" required>
                                     <option value="" disabled selected>Escolha...</option>
-                                    <option value="" class="apagarAposSelecaoNivelFalta" disabled >Leve:</option>
+                                    <optgroup CLASS="apagarAposSelecaoNivelFalta" label="Leve:">
 
                                     <?php
 
@@ -273,13 +273,13 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 4){
                                     foreach ($motivo as $motivo1){
                                         if ($motivo1['nivel_falta_idNivel_falta'] == 2){
                                             if ($nvl2){
-                                                echo "<option value=\"\" class='apagarAposSelecaoNivelFalta' disabled >Média:</option>";
+                                                echo "</optgroup><optgroup CLASS='apagarAposSelecaoNivelFalta' label='Média:'>";
                                                 $nvl2 = false;
                                             }
                                             echo "<option class='nivel_falta2' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
                                         }elseif ($motivo1['nivel_falta_idNivel_falta'] == 3) {
                                             if ($nvl3){
-                                                echo "<option value=\"\" class='apagarAposSelecaoNivelFalta' disabled >Grave:</option>";
+                                                echo "</optgroup><optgroup CLASS='apagarAposSelecaoNivelFalta' label='Grave:'>";
                                                 $nvl3 = false;
                                             }
                                             echo "<option class='nivel_falta3' value='".$motivo1['idMotivo']."'>".$motivo1['nome']."</option>";
@@ -292,7 +292,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 4){
 
                                     ?>
 
-
+                                    </optgroup>
                                 </select>
                             </div>
 
