@@ -18,13 +18,12 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
     require_once "classes/Nivel_falta.php";
     require_once "classes/Motivo.php";
 
-    $cursos = new Curso();
+
     $turnos = new Turno();
     $turma = new Turma();
     $aluno = new Aluno();
     $nivel_falta = new Nivel_falta();
 
-    $cursos = $cursos->listaCurso();
     $turnos = $turnos->listaTurnos();
     $turma = $turma->listaTurma();
     $nivel_falta = $nivel_falta->listaFaltas();
@@ -106,6 +105,19 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                         </th>
                     </tr>
                     <tr id="filtros_multiselect" >
+                        <?php
+                            $cursos = new Curso();
+
+                            require_once "classes/Cargo.php";
+                            $cargo = new Cargo();
+                            $cargo->seleciona($_SESSION['cargo']);
+
+                            if ($_SESSION['cargo'] < 4) {
+                                $cursos = $cursos->listaCurso();
+                            }else{
+                                $cursos = $cursos->_selecionaPorNomeCurso(substr($cargo->getCargo(), 20));
+                            }
+                        ?>
                         <th scope="col-auto" class="align-content-center ">
                             <div class="">
     <!--                            multiselect dos cursos-->
@@ -117,18 +129,18 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                         </th>
                         <th scope="col-auto" class="align-content-center ">
                             <div class="">
-    <!--                            multiselect dos anos-->
-                                <label for="">Ano:</label>
-                                <ul class="multiselects list-group" name="ano" id="ano" disabled="true">
+    <!--                            multiselect dos turnos-->
+                                <label for="">Turno:</label>
+                                <ul class="multiselects list-group" name="turno" id="turno" disabled="true">
 
                                 </ul>
                             </div>
                         </th>
                         <th scope="col-auto" class="align-content-center ">
                             <div class="">
-    <!--                            multiselect dos turnos-->
-                                <label for="">Turno:</label>
-                                <ul class="multiselects list-group" name="turno" id="turno" disabled="true">
+    <!--                            multiselect dos anos-->
+                                <label for="">Ano:</label>
+                                <ul class="multiselects list-group" name="ano" id="ano" disabled="true">
 
                                 </ul>
                             </div>

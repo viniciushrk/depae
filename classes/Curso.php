@@ -54,6 +54,26 @@ class Curso extends Conexao
         }
     }
 
+    public function _selecionaPorNomeCurso($nome_curso)
+    {
+        try {
+            $con = $this->conecta();
+            $resul = $con->prepare("select idCurso,nome_curso from curso where nome_curso like CONCAT('PV - ', UPPER(?)), ' INTEGRADO'");
+            $resul->bindValue(1, $nome_curso);
+            $resul->execute();
+            $con = null;
+            if ($resul->rowCount() > 0) {
+                return $resul->fetchAll();
+            } else {
+                return true;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+
+
     public function listaCurso()
     {
         try {
