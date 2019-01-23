@@ -16,12 +16,12 @@ if(true){
 
 
     if (isset($_POST['curso'])){
+        $turmas = new Turma();
 
         if (isset($_POST['turno'])) {
-            $turmas = new Turma();
             echo json_encode($turmas->selecionaTurmasPorIdCursoETurno($_POST['curso'],$_POST['turno']));
         }else{
-            echo false;
+            echo json_encode($turmas->selecionaTurmasPorIdCurso($_POST['curso']));
         }
     }
 }else{

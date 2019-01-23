@@ -48,7 +48,7 @@
                                 $cargos = $cargo->listaCargos();
                                 foreach ($cargos as $cargo) {?>
                                 <?php if ($_SESSION['cargo'] != 1 && $cargo['idCargo'] == 1) {continue;}?>
-                                    <option value=<?php echo $cargo['idCargo']; if($servidor->getCargoIdcargo() == $cargo['idCargo']) echo "selected"; ?>><?php echo $cargo['cargo']?></option>
+                                    <option value=<?php echo "\"".$cargo['idCargo']."\""; if($servidor->getCargoIdcargo() == $cargo['idCargo']) echo "selected"; ?>><?php echo $cargo['cargo']?></option>
 
                             <?php }?>
                         </select>
@@ -112,7 +112,7 @@
                             $cargos = $cargo->listaCargos();
                             $servidor->selecionaPorIdServidor($_GET['id']);
                             foreach ($cargos as $cargo1) {?>
-                                <?php if($_SESSION['cargo'] != 1 and $cargo1['idCargo'] == 1){continue;}?>
+                                <?php if($cargo1['idCargo'] == 1){continue;}?>
                                 <option value="<?php echo $cargo1['idCargo']; if($servidor->getCargoIdcargo() == $cargo1['idCargo']) echo "selected";?>"> <?php echo $cargo1['cargo'];?> </option>
                             <?php } ?>
                         </select>
