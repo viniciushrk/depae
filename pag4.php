@@ -165,7 +165,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 4){
 
                             <label for="curso">Curso</label>
 
-                            <select name="curso" id="curso" class="form-control" onchange="lock = true;" onclick="mecheTurno(this.value);mecheSerie(this.value, turno.value);mecheTurma(this.value, turno.value, serie.value)//mycallback(this.value, turno.value)">
+                            <select name="curso" id="curso" class="form-control" onchange="lock = true;mecheTurno(this.value);mecheSerie(this.value, turno.value);mecheTurma(this.value, turno.value, serie.value)//mycallback(this.value, turno.value)">
                                 <option value="" disabled selected >Escolha...</option>
                                 <?php
                                 foreach ($cursos as $row) {
@@ -179,7 +179,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 4){
 
                         <div class="form-group col-lg-3">
                             <label for="turno">Turno</label>
-                            <select name="turno" id="turno" class="form-control" onchange="lock = true;" onclick="mecheTurno(curso.value);mecheSerie(curso.value, this.value);mecheTurma(curso.value, this.value, serie.value)//mycallback(curso.value, this.value)">
+                            <select name="turno" id="turno" class="form-control" onchange="lock = true;/*mecheTurno(curso.value);*/mecheSerie(curso.value, this.value);mecheTurma(curso.value, this.value, serie.value)//mycallback(curso.value, this.value)">
                                 <option value="" disabled selected >Escolha...</option>
                                 <?php
                                 foreach ($turnos as $row) {
@@ -191,7 +191,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 4){
 
                         <div class="form-group col-lg-2">
                             <label>Série</label>
-                            <select name="serie" id="serie" class="form-control option" onchange="lock = true;" onclick="mecheTurno(curso.value);mecheSerie(curso.value, turno.value);mecheTurma(curso.value, turno.value, this.value)">
+                            <select name="serie" id="serie" class="form-control option" onchange="lock = true;mecheTurno(curso.value);/*mecheSerie(curso.value, turno.value);*/mecheTurma(curso.value, turno.value, this.value)">
                                 <option value="" disabled selected>Escolha...</option>
 
                                 <?php
@@ -206,7 +206,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 4){
 
                         <div class="form-group col-lg-2">
                             <label>Turma</label>
-                            <select name="turma" id="turma" onchange="lock = true;getAlunosDaTurma(this.value);" class="form-control">
+                            <select name="turma" id="turma" onchange="lock = true;getAlunosDaTurma(this.value);" onclick="getAlunosDaTurma(this.value)" class="form-control">
                                 <option value="" disabled selected>Escolha...</option>
                                 <?php
                                 foreach ($turma as $turma2){
@@ -224,7 +224,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 4){
 
                             <label for="nome">Nome</label>
 
-                            <select name="nome" class="form-control" id="nome" required onclick="getAlunosDaTurma(turma.value)">
+                            <select name="nome" class="form-control" id="nome" required onclick="//getAlunosDaTurma(turma.value)">
 
                                 <option value="" disabled selected> escolha</option>
                                 <?php

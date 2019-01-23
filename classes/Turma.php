@@ -62,7 +62,7 @@ class Turma extends Conexao
     {
         try {
             $con = $this->conecta();
-            $resul = $con->prepare("select * from turma");
+            $resul = $con->prepare("select * from turma order by serie");
             $resul->execute();
             $con = null;
             return $resul->fetchAll();

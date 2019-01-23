@@ -24,8 +24,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
     $aluno = new Aluno();
     $nivel_falta = new Nivel_falta();
 
-    $turnos = $turnos->listaTurnos();
-    $turma = $turma->listaTurma();
+
     $nivel_falta = $nivel_falta->listaFaltas();
 
 
@@ -100,8 +99,8 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                 <thead>
                     <tr>
                         <th colspan="4" scope="col-auto">
-                            <div class="btn col-auto" onclick="radiobutton_relatorio_geral.click()"><input type="radio" name="rel_type" value="geral" id="radiobutton_relatorio_geral" checked>&nbsp Geral &nbsp&nbsp&nbsp&nbsp</div>
-                            <div class="btn col-auto" onclick="radiobutton_relatorio_especifico.click()"><input type="radio" name="rel_type" value="especifico" id="radiobutton_relatorio_especifico">&nbsp Específico &nbsp&nbsp&nbsp&nbsp</div>
+                            <div class="btn col-auto" onclick="radiobutton_relatorio_geral.click()"><input type="radio" class="radio" name="rel_type" value="geral" id="radiobutton_relatorio_geral" checked>&nbsp Geral &nbsp&nbsp&nbsp&nbsp</div>
+                            <div class="btn col-auto" onclick="radiobutton_relatorio_especifico.click()"><input type="radio" class="radio" name="rel_type" value="especifico" id="radiobutton_relatorio_especifico">&nbsp Específico &nbsp&nbsp&nbsp&nbsp</div>
                         </th>
                     </tr>
                     <tr id="filtros_multiselect" >
@@ -111,6 +110,10 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                             require_once "classes/Cargo.php";
                             $cargo = new Cargo();
                             $cargo->seleciona($_SESSION['cargo']);
+
+                            $turnos = $turnos->listaTurnos();
+                            $anos = $turma->getTodasSeriesApenas();
+                            $turmas = $turma->listaTurma();
 
                             if ($_SESSION['cargo'] < 4) {
                                 $cursos = $cursos->listaCurso();
@@ -123,6 +126,11 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
     <!--                            multiselect dos cursos-->
                                 <label for="curso">Curso:</label>
                                 <ul class="multiselects list-group" name="curso" id="curso" disabled="true">
+                                    <?php
+                                        foreach ($cursos as $_curso) {
+                                            echo "<li class='list-group-item' value='".$_curso['idCurso']."'><input type='checkbox' /></li>";
+                                        }
+                                    ?>
 
                                 </ul>
                             </div>
@@ -130,8 +138,13 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                         <th scope="col-auto" class="align-content-center ">
                             <div class="">
     <!--                            multiselect dos turnos-->
-                                <label for="">Turno:</label>
+                                <label for="turno">Turno:</label>
                                 <ul class="multiselects list-group" name="turno" id="turno" disabled="true">
+                                    <?php
+                                        foreach ($turnos as $_turno) {
+
+                                        }
+                                    ?>
 
                                 </ul>
                             </div>
@@ -139,8 +152,13 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                         <th scope="col-auto" class="align-content-center ">
                             <div class="">
     <!--                            multiselect dos anos-->
-                                <label for="">Ano:</label>
+                                <label for="ano">Ano:</label>
                                 <ul class="multiselects list-group" name="ano" id="ano" disabled="true">
+                                    <?php
+                                        foreach ($anos as $_ano) {
+
+                                        }
+                                    ?>
 
                                 </ul>
                             </div>
@@ -148,8 +166,13 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                         <th scope="col-auto" class="align-content-center ">
                             <div class="">
     <!--                            multiselect das turmas-->
-                                <label for="">Turma:</label>
+                                <label for="turma">Turma:</label>
                                 <ul class="multiselects list-group" name="turma" id="turma" disabled="true">
+                                    <?php
+                                        foreach ($turmas as $_turma) {
+
+                                        }
+                                    ?>
 
                                 </ul>
                             </div>

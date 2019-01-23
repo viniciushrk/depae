@@ -174,7 +174,7 @@ function mecheSerie(idCurso, idTurno) {
         }
     }else if (idCurso === "" && idTurno !== "") { //turno
         for (var c = 0; c < turmas.length; c++) {
-            if (turmas[c]['curso_idTurno'] == idTurno && !searchStringInArray(turmas[c]['serie'], series)){
+            if (turmas[c]['turno_idTurno'] == idTurno && !searchStringInArray(turmas[c]['serie'], series)){
                 series[series.length] = turmas[c]['serie'];
                 $("<option>", {
                     value: series[series.length -1],
