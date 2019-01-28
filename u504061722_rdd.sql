@@ -408,3 +408,12 @@ INSERT INTO `u504061722_rdd`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) V
 
 COMMIT;
 
+-- -----------------------------------------------------
+-- Data for table `depae`.`turno`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `depae`;
+INSERT INTO `depae`.`turno` (`idTurno`, `turno`) VALUES (1, 'MATUTINO');
+INSERT INTO `depae`.`turno` (`idTurno`, `turno`) VALUES (2, 'VESPERTINO');
+
+COMMIT;

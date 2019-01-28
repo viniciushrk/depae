@@ -370,6 +370,16 @@ INSERT INTO `depae`.`turma` (`idTurma`, `serie`, `periodo_letivo`, `Curso_idCurs
 
 COMMIT;
 
+-- -----------------------------------------------------
+-- Data for table `depae`.`turno`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `depae`;
+INSERT INTO `depae`.`turno` (`idTurno`, `turno`) VALUES (1, 'MATUTINO');
+INSERT INTO `depae`.`turno` (`idTurno`, `turno`) VALUES (2, 'VESPERTINO');
+
+COMMIT;
+
 
 -- -----------------------------------------------------
 -- Data for table `depae`.`cargo`
@@ -458,11 +468,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `depae`;
-INSERT INTO `depae`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) VALUES (1, 'Regular');
-INSERT INTO `depae`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) VALUES (2, 'Dependência');
-INSERT INTO `depae`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) VALUES (3, 'Especial');
-INSERT INTO `depae`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) VALUES (4, 'Ouvinte');
-INSERT INTO `depae`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) VALUES (5, 'Transferido');
+INSERT INTO `depae`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) VALUES (1, 'RG');
+INSERT INTO `depae`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) VALUES (2, 'DP');
+INSERT INTO `depae`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) VALUES (3, 'ES');
+INSERT INTO `depae`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) VALUES (4, 'OV');
+INSERT INTO `depae`.`tipo_vinculo` (`idTipo_vinculo`, `tipo_vinculo`) VALUES (5, 'TR');
 
 COMMIT;
 
