@@ -42,39 +42,56 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
     require_once "classes/Nivel_falta.php";
     require_once "classes/Motivo.php";
 
+    require_once "classes/Cargo.php";
 
     $turnos = new Turno();
     $turma = new Turma();
     $aluno = new Aluno();
     $nivel_falta = new Nivel_falta();
 
+    $cursos = new Curso();
+    $cargo = new Cargo();
 
     $nivel_falta = $nivel_falta->listaFaltas();
 
 
+    $cargo->seleciona($_SESSION['cargo']);
+
+    $turnos = $turnos->listaTurnos();
+    $anos = $turma->getTodasSeriesApenas();
+    $turmas = [];
+
+    if ($_SESSION['cargo'] < 4) {
+        $cursos = $cursos->listaCurso();
+        $turmas = $turma->listaTurma();
+
+    }else{
+        $cursos = $cursos->_selecionaPorNomeCurso(substr($cargo->getCargo(), 20));
+        $turmas = $turma->selecionaTurmasPorIdCurso($cursos[0]['idCurso']);
+    }
 
     echo "<script>";
 
-//    $numDeTurmas = count($turma);
-//    echo "var turmas = new Array(".$numDeTurmas.");";
-//    echo "for (var c = 0; c < ".$numDeTurmas.";c++){
-//                    turmas[c] = {
-//                                    idTurma: '',
-//                                    serie: '',
-//                                    periodo_letivo: '',
-//                                    curso_idCurso: '',
-//                                    turno_idTurno: ''
-//                                };
-//                }
-//        ";
-//    for ($c = 0; $c < $numDeTurmas; $c++) {
-//        echo   "turmas[" . $c . "]['idTurma'] = \"" . $turma[$c]['idTurma'] . "\";
-//                    turmas[" . $c . "]['serie'] = \"" . $turma[$c]['serie'] . "\";
-//                    turmas[" . $c . "]['periodo_letivo'] = \"" . $turma[$c]['periodo_letivo'] . "\";
-//                    turmas[" . $c . "]['curso_idCurso'] = " . $turma[$c]['curso_idCurso'] . ";
-//                    turmas[" . $c . "]['turno_idTurno'] = " . $turma[$c]['turno_idTurno'] . ";
-//            ";
-//    }
+    $numDeTurmas = count($turmas);
+    echo "var turmas = new Array(".$numDeTurmas.");";
+    echo "for (var c = 0; c < ".$numDeTurmas.";c++){
+                    turmas[c] = {
+                                    idTurma: '',
+                                    serie: '',
+                                    periodo_letivo: '',
+                                    curso_idCurso: '',
+                                    turno_idTurno: ''
+                                };
+                }
+        ";
+    for ($c = 0; $c < $numDeTurmas; $c++) {
+        echo   "turmas[" . $c . "]['idTurma'] = \"" . $turmas[$c]['idTurma'] . "\";
+                    turmas[" . $c . "]['serie'] = \"" . $turmas[$c]['serie'] . "\";
+                    turmas[" . $c . "]['periodo_letivo'] = \"" . $turmas[$c]['periodo_letivo'] . "\";
+                    turmas[" . $c . "]['curso_idCurso'] = " . $turmas[$c]['curso_idCurso'] . ";
+                    turmas[" . $c . "]['turno_idTurno'] = " . $turmas[$c]['turno_idTurno'] . ";
+            ";
+    }
 
 //    $numDeTurnos = count($turnos);
 //    echo "var turnos = new Array(".$numDeTurnos.");";
@@ -99,6 +116,26 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
 
 ?>
 
+<script type="text/javascript">
+    function mecheSerie(idCurso) { //MECHER AINDA!!!!!!!!
+        $('#serie > .f5').remove();
+        var series = [];
+
+
+        for (var c = 0; c < turmas.length; c++) {
+            if (!searchStringInArray(turmas[c]['serie'], series)){
+                series[series.length] = turmas[c]['serie'];
+                $("<option>", {
+                    value: series[series.length -1],
+                    class: "f5"
+                }).appendTo($('#serie')).html(series[series.length -1]);
+            }
+        }
+
+    }
+</script>
+
+
 <br/>
     <div class="form-group mx-auto mt-5 container">
 <!--        <label for="filtro">Filtros</label>-->
@@ -106,16 +143,21 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
 <!--        <button class="btn btn-success my-2" name="exportBtn" type="submit" value="Exportar">Pesquisar</button>-->
         <script type="text/javascript">
             function desativaFiltros() {
-                $('.multiselects').attr('disabled', 'true');
+                // $('.multiselects').attr('disabled', 'true');
+
+                $('.multiselects').addClass("disable-mouse-interaction");
+
                 console.log("disabled multiselects");
             }
             function ativaFiltros() {
-                $('.multiselects').removeAttr("disabled");
+                // $('.multiselects').removeAttr("disabled");
+                $('.multiselects').removeClass("disable-mouse-interaction");
                 console.log("enabled multiselects");
             }
             $(document).ready(function() {
                 $('#radiobutton_relatorio_geral').attr('onclick', "desativaFiltros();");
                 $('#radiobutton_relatorio_especifico').attr('onclick', "ativaFiltros();");
+                desativaFiltros();
             });
         </script>
         <form class="width-fill-parent">
@@ -128,31 +170,15 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                         </th>
                     </tr>
                     <tr id="filtros_multiselect" >
-                        <?php
-                            $cursos = new Curso();
 
-                            require_once "classes/Cargo.php";
-                            $cargo = new Cargo();
-                            $cargo->seleciona($_SESSION['cargo']);
-
-                            $turnos = $turnos->listaTurnos();
-                            $anos = $turma->getTodasSeriesApenas();
-                            $turmas = $turma->listaTurma();
-
-                            if ($_SESSION['cargo'] < 4) {
-                                $cursos = $cursos->listaCurso();
-                            }else{
-                                $cursos = $cursos->_selecionaPorNomeCurso(substr($cargo->getCargo(), 20));
-                            }
-                        ?>
                         <th scope="col-auto" class="align-content-center ">
-                            <div class="">
+                            <div class="filtros">
     <!--                            multiselect dos cursos-->
                                 <label for="curso">Curso:</label>
-                                <ul class="multiselects list-group" name="curso" id="curso" disabled="true">
+                                <ul class="multiselects list-group" name="curso" id="curso">
                                     <?php
                                         foreach ($cursos as $_curso) {
-                                            echo "<li class='list-group-item' value='".$_curso['idCurso']."'><input type='checkbox' /></li>";
+                                            echo "<li class='btn list-group-item text-left' onclick='idCurso_".$_curso['idCurso'].".click()' value='".$_curso['idCurso']."'>".$_curso['nome_curso']."&nbsp&nbsp&nbsp&nbsp<input id='idCurso_".$_curso['idCurso']."' type='checkbox' class='float-right'/></li>";
                                         }
                                     ?>
 
@@ -160,13 +186,13 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                             </div>
                         </th>
                         <th scope="col-auto" class="align-content-center ">
-                            <div class="">
+                            <div class="filtros">
     <!--                            multiselect dos turnos-->
                                 <label for="turno">Turno:</label>
-                                <ul class="multiselects list-group" name="turno" id="turno" disabled="true">
+                                <ul class="multiselects list-group" name="turno" id="turno">
                                     <?php
                                         foreach ($turnos as $_turno) {
-
+                                            echo "<li class='btn list-group-item text-left' onclick='idTurno_".$_turno['idTurno'].".click()' value='".$_turno['idTurno']."'>".$_turno['turno']."&nbsp&nbsp&nbsp&nbsp<input id='idTurno_".$_turno['idTurno']."' type='checkbox' class='float-right'/></li>";
                                         }
                                     ?>
 
@@ -174,10 +200,10 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                             </div>
                         </th>
                         <th scope="col-auto" class="align-content-center ">
-                            <div class="">
+                            <div class="filtros">
     <!--                            multiselect dos anos-->
                                 <label for="ano">Ano:</label>
-                                <ul class="multiselects list-group" name="ano" id="ano" disabled="true">
+                                <ul class="multiselects list-group" name="ano" id="ano">
                                     <?php
                                         foreach ($anos as $_ano) {
 
@@ -188,10 +214,10 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                             </div>
                         </th>
                         <th scope="col-auto" class="align-content-center ">
-                            <div class="">
+                            <div class="filtros">
     <!--                            multiselect das turmas-->
                                 <label for="turma">Turma:</label>
-                                <ul class="multiselects list-group" name="turma" id="turma" disabled="true">
+                                <ul class="multiselects list-group" name="turma" id="turma">
                                     <?php
                                         foreach ($turmas as $_turma) {
 
