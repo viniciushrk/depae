@@ -1,4 +1,4 @@
-<!-- Home -->
+<!-- lista de usuarios ativados -->
 <?php
     if (isset($_SESSION['cargo']) && $_SESSION['cargo'] < 3) {
         ?>
@@ -38,6 +38,7 @@
                     $servidores = $servidor->listaServidoresAtivados();
 
                     foreach ($servidores as $linha) {
+                        if($_SESSION['cargo'] != 1 && $linha['cargo_idCargo'] > 1){
                         ?>
 
                         <tr>
@@ -46,13 +47,28 @@
                                                                                                    src="open-iconic-master/svg/x.svg"></a>
                             </td>
                             <td><?php echo $linha['nome']; ?></td>
-                            <td><?php echo $linha['login_email']; ?></td>
+                            <td><?php echo $linha['login_email'];?></td>
                             <td>
                                 <a href="index.php?page=pag5&id=<?php echo $linha['idServidor']; ?>&http_referer=<?php echo $page?>"><img class="img2"
                                                                                                           src="open-iconic-master/svg/pencil.svg"></a>
                             </td>
                         </tr>
-                    <?php } ?>
+                    <?php }elseif($_SESSION['cargo'] == 1 && $linha['cargo_idCargo'] >= 1){?>
+                            <tr>
+                                <td>
+                                    <a href="index.php?page=desativa&id=<?php echo $linha['idServidor']; ?>"><img class="img2"
+                                                                                                                  src="open-iconic-master/svg/x.svg"></a>
+                                </td>
+                                <td><?php echo $linha['nome']; ?></td>
+                                <td><?php echo $linha['login_email'];?></td>
+                                <td>
+                                    <a href="index.php?page=pag5&id=<?php echo $linha['idServidor']; ?>&http_referer=<?php echo $page?>"><img class="img2"
+                                                                                                                                              src="open-iconic-master/svg/pencil.svg"></a>
+                                </td>
+                            </tr>
+
+
+                            <?php }}?>
                     </tbody>
                 </table>
             </div>
