@@ -12,7 +12,7 @@ class Turma extends Conexao
     private $serie;
     private $periodo_letivo;
     private $curso_idCurso;
-    private $turno_idturno;
+    private $turno_idTurno;
 
 
     public function selecionaPorIdTurma($idTurma)
@@ -29,7 +29,7 @@ class Turma extends Conexao
                 $this->serie = $resul[1];
                 $this->periodo_letivo= $resul[2];
                 $this->curso_idCurso= $resul[3];
-                $this->turno_idturno= $resul[4];
+                $this->turno_idTurno= $resul[4];
 
                 return false;
             } else {
@@ -88,11 +88,11 @@ class Turma extends Conexao
     }
 
     /**
-     * @param mixed $turno_idturno
+     * @param mixed $turno_idTurno
      */
-    public function setTurnoIdturno($turno_idturno)
+    public function setTurnoIdturno($turno_idTurno)
     {
-        $this->turno_idturno = $turno_idturno;
+        $this->turno_idTurno = $turno_idTurno;
     }
     public function selecionaTurmasPorPeriodoLetivo($periodo_letivo)
     {
@@ -205,12 +205,12 @@ class Turma extends Conexao
     {
         try {
             $con = $this->conecta();
-            $sql = $con->prepare("insert into turma(idTurma, serie, periodo_letivo, curso_idCurso, turno_idturno) values (?, ?, ?, ?, ?)");
+            $sql = $con->prepare("insert into turma(idTurma, serie, periodo_letivo, curso_idCurso, turno_idTurno) values (?, ?, ?, ?, ?)");
             $sql->bindValue(1, $this->idTurma);
             $sql->bindValue(2, $this->serie);
             $sql->bindValue(3, $this->periodo_letivo);
             $sql->bindValue(4, $this->curso_idCurso);
-            $sql->bindValue(5, $this->turno_idturno);
+            $sql->bindValue(5, $this->turno_idTurno);
             $sql->execute();
             return true;
         } catch (PDOException $e) {
@@ -222,11 +222,11 @@ class Turma extends Conexao
     {
         try {
             $con = $this->conecta();
-            $sql = $con->prepare("update into turma set serie = ?, periodo_letivo = ?, curso_idCurso = ?, turno_idturno = ? where idTurma = ?");
+            $sql = $con->prepare("update into turma set serie = ?, periodo_letivo = ?, curso_idCurso = ?, turno_idTurno = ? where idTurma = ?");
             $sql->bindValue(1, $this->serie);
             $sql->bindValue(2, $this->periodo_letivo);
             $sql->bindValue(3, $this->curso_idCurso);
-            $sql->bindValue(4, $this->turno_idturno);
+            $sql->bindValue(4, $this->turno_idTurno);
             $sql->bindValue(5, $this->idTurma);
 
             $sql->execute();
@@ -291,7 +291,7 @@ class Turma extends Conexao
      */
     public function getTurnoIdturno()
     {
-        return $this->turno_idturno;
+        return $this->turno_idTurno;
     }
 
 
