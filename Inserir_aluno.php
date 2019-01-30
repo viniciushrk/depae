@@ -21,10 +21,10 @@
 <div class="container position-relative">
 <?php if(isset($_SESSION['cargo']) && $_SESSION['cargo'] < 3){?>
 
-     <form  action="upload.php" method="post" name="file" class="dropzone" id="dropzoneFrom" enctype="multipart/form-data" multiple>
+     <form  action="upload.php" method="post" name="file" class="dropzone" style=" border: 2px dashed rgb(54, 183, 0);" id="dropzoneFrom" enctype="multipart/form-data" multiple>
          <input type="hidden" name="maximum-size" value="30000"/>
     </form>
-
+    <br/>    
     <center><button class="btn btn-info" style="padding: 10px; " id="submit-all">adicionar</button></center>
 </div>
 </body>
@@ -33,6 +33,7 @@
         Dropzone.options.dropzoneFrom = {
             autoProcessQueue: false,
             acceptedFiles:".xls,.xlsx",
+            maxFiles:4,
             addRemoveLinks:true,
             init: function(){
                 var submitButton = document.querySelector('#submit-all');
