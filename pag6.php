@@ -113,25 +113,67 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
 
     echo "</script>";
 
-
+    function searchStringInArray($str, $arr) {
+        foreach ($arr as $el) {
+            if (strpos($el, $str) !== false){
+                return true;
+            }
+        }
+        return false;
+    }
 ?>
 
 <script type="text/javascript">
-    function mecheSerie(idCurso) { //MECHER AINDA!!!!!!!!
-        $('#serie > .f5').remove();
-        var series = [];
-
-
-        for (var c = 0; c < turmas.length; c++) {
-            if (!searchStringInArray(turmas[c]['serie'], series)){
-                series[series.length] = turmas[c]['serie'];
-                $("<option>", {
-                    value: series[series.length -1],
-                    class: "f5"
-                }).appendTo($('#serie')).html(series[series.length -1]);
+    function searchStringInArray(str, arr) {
+        for (var c = 0; c < arr.length; c++) {
+            if (arr[c].indexOf(str) != -1){
+                return true
             }
         }
+        return false;
+        // return arr.some(function(word) {
+        //     return str.match(new RegExp(word));
+        // });
+    }
 
+    function searchNumberInArray(n, arr) {
+        for (var c = 0; c < arr.length; c++) {
+            if (arr[c] == n){
+                return true
+            }
+        }
+        return false;
+    }
+
+    // function loadSerie(arr_idCurso) { //MECHER AINDA!!!!!!!!
+    //     // $('#serie > .f5').remove();
+    //     var series = [];
+    //
+    //     for (var c = 0; c < turmas.length; c++) {
+    //         if (!searchStringInArray(turmas[c]['serie'], series)){
+    //             series[series.length] = turmas[c]['serie'];
+    //             $("<option>", {
+    //                 value: series[series.length -1]//,
+    //                 // class: "f5"
+    //             }).appendTo($('#ano')).html(series[series.length -1]);
+    //         }
+    //     }
+    //
+    // }
+
+    var faltas = [];
+
+    function loadFaltasDoAno(_ano) {
+        $.ajax({
+            url: "loadFaltas.php",
+            data: {
+                ano: _ano
+            },
+            type: "POST",
+            success: function (result) {
+                faltas = JSON.parse(result);
+            }
+        });
     }
 </script>
 
@@ -145,6 +187,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
             function desativaFiltros() {
                 // $('.multiselects').attr('disabled', 'true');
 
+                $('.multiselects').removeClass("re-enable-mouse-interaction");
                 $('.multiselects').addClass("disable-mouse-interaction");
 
                 console.log("disabled multiselects");
@@ -152,12 +195,22 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
             function ativaFiltros() {
                 // $('.multiselects').removeAttr("disabled");
                 $('.multiselects').removeClass("disable-mouse-interaction");
+                $('.multiselects').addClass("re-enable-mouse-interaction");
                 console.log("enabled multiselects");
             }
             $(document).ready(function() {
+                for (var c = 0; c < $(".multiselects").length; c++) { //nem tenta, só aceita
+                    $(".multiselects")[c].style.height = ($($(".multiselects")[c].children[0]).outerHeight() + $($(".multiselects")[c].children[1]).outerHeight()) +"px";
+                }
+
+                $(".multiselects").addClass("x-scroll-them");
+
                 $('#radiobutton_relatorio_geral').attr('onclick', "desativaFiltros();");
                 $('#radiobutton_relatorio_especifico').attr('onclick', "ativaFiltros();");
                 desativaFiltros();
+
+                periodo.value = (new Date).getFullYear();
+                loadFaltasDoAno(periodo.value);
             });
         </script>
         <form class="width-fill-parent">
@@ -167,6 +220,25 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                         <th colspan="4" scope="col-auto">
                             <div class="btn col-auto" onclick="radiobutton_relatorio_geral.click()"><input type="radio" class="radio" name="rel_type" value="geral" id="radiobutton_relatorio_geral" checked>&nbsp Geral &nbsp&nbsp&nbsp&nbsp</div>
                             <div class="btn col-auto" onclick="radiobutton_relatorio_especifico.click()"><input type="radio" class="radio" name="rel_type" value="especifico" id="radiobutton_relatorio_especifico">&nbsp Específico &nbsp&nbsp&nbsp&nbsp</div>
+
+                            <div class="col-auto float-right">
+                                <select class="form-control" name="periodo" id="periodo">
+                                    <?php
+                                        $anos = array();
+                                        foreach ($faltas as $_falta) {
+                                            $_ano_teste = date('Y', strtotime($_falta['data_inicio']));
+                                            if (!searchStringInArray($_ano_teste, $anos)){
+                                                $anos[count($anos)] = $_ano_teste;
+                                                echo "<option value='$_ano_teste'>".$_ano_teste."</option>";
+
+                                            }
+
+
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+
                         </th>
                     </tr>
                     <tr id="filtros_multiselect" >
@@ -178,7 +250,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                                 <ul class="multiselects list-group" name="curso" id="curso">
                                     <?php
                                         foreach ($cursos as $_curso) {
-                                            echo "<li class='btn list-group-item text-left' onclick='idCurso_".$_curso['idCurso'].".click()' value='".$_curso['idCurso']."'>".$_curso['nome_curso']."&nbsp&nbsp&nbsp&nbsp<input id='idCurso_".$_curso['idCurso']."' type='checkbox' class='float-right'/></li>";
+                                            echo "<li class='btn list-group-item text-left' onclick='idCurso_".$_curso['idCurso'].".click()' value='".$_curso['idCurso']."'>".$_curso['nome_curso']."&nbsp&nbsp&nbsp&nbsp<input id='idCurso_".$_curso['idCurso']."' type='checkbox' class='float-right _disable-mouse-interaction'/></li>";
                                         }
                                     ?>
 
@@ -192,7 +264,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                                 <ul class="multiselects list-group" name="turno" id="turno">
                                     <?php
                                         foreach ($turnos as $_turno) {
-                                            echo "<li class='btn list-group-item text-left' onclick='idTurno_".$_turno['idTurno'].".click()' value='".$_turno['idTurno']."'>".$_turno['turno']."&nbsp&nbsp&nbsp&nbsp<input id='idTurno_".$_turno['idTurno']."' type='checkbox' class='float-right'/></li>";
+                                            echo "<li class='btn list-group-item text-left' onclick='idTurno_".$_turno['idTurno'].".click()' value='".$_turno['idTurno']."'>".$_turno['turno']."&nbsp&nbsp&nbsp&nbsp<input id='idTurno_".$_turno['idTurno']."' type='checkbox' class='float-right _disable-mouse-interaction'/></li>";
                                         }
                                     ?>
 
@@ -206,7 +278,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                                 <ul class="multiselects list-group" name="ano" id="ano">
                                     <?php
                                         foreach ($anos as $_ano) {
-
+                                            echo "<li class='btn list-group-item text-left' onclick='serie_".substr($_ano, 0, 1).".click()' value='".$_ano."'>".$_ano."&nbsp&nbsp&nbsp&nbsp<input id='serie_".substr($_ano, 0, 1)."' type='checkbox' class='float-right _disable-mouse-interaction'/></li>";
                                         }
                                     ?>
 
@@ -220,7 +292,7 @@ if(isset($_SESSION['cargo'])&& $_SESSION['cargo'] < 8){
                                 <ul class="multiselects list-group" name="turma" id="turma">
                                     <?php
                                         foreach ($turmas as $_turma) {
-
+                                            echo "<li class='btn list-group-item text-left' onclick='turma_".$_turma['idTurma'].".click()' value='".$_turma['idTurma']."'>".$_turma['idTurma']."&nbsp&nbsp&nbsp&nbsp<input id='turma_".$_turma['idTurma']."' type='checkbox' class='float-right _disable-mouse-interaction'/></li>";
                                         }
                                     ?>
 

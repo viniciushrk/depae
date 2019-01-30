@@ -56,7 +56,7 @@ class Faltas extends Conexao
     {
         try {
             $con = $this->conecta();
-            $resul = $con->prepare("select * from faltas");
+            $resul = $con->prepare("select * from faltas order by data_inicio");
             $resul->execute();
             $con = null;
             return $resul->fetchAll();
@@ -122,6 +122,23 @@ class Faltas extends Conexao
             $con = $this->conecta();
             $resul = $con->prepare("select * from faltas where data_inicio < ?");
             $resul->bindValue(1, $data);
+            $resul->execute();
+            $con = null;
+            if ($resul->rowCount() > 0) {
+                return $resul->fetchall();
+            } else {
+                return 0;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function selecionaFaltasDoAno($ano) {
+        try {
+            $con = $this->conecta();
+            $resul = $con->prepare("select * from faltas where YEAR(data_inicio) = ?");
+            $resul->bindValue(1, $ano);
             $resul->execute();
             $con = null;
             if ($resul->rowCount() > 0) {

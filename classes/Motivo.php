@@ -10,7 +10,6 @@ class Motivo extends Conexao
 {
     private $idMotivo;
     private $nome;
-    private $dias_penalidade;
     private $servidor_idServidor;
     private $nivel_falta_idNivel_falta;
 
@@ -122,9 +121,10 @@ class Motivo extends Conexao
         if (empty($this->idMotivo)) {
             try {
                 $con = $this->conecta();
-                $sql = $con->prepare('insert into motivo(nome, dias_penalidades, servidor_idServidor, nivel_falta_idNivel_falta) values (?,?)');
+                $sql = $con->prepare('insert into motivo(nome, servidor_idServidor, nivel_falta_idNivel_falta) values (?,?,?)');
                 $sql->bindValue(1, $this->nome);
-                $sql->bindValue(2, $this->dias_penalidade);
+                $sql->bindValue(2, $this->servidor_idServidor);
+                $sql->bindValue(3, $this->nivel_falta_idNivel_falta);
                 $sql->execute();
                 $this->idMotivo = $con->lastInsertId();
                 return true;
@@ -140,12 +140,11 @@ class Motivo extends Conexao
     {
         try {
             $con = $this->conecta();
-            $resul = $con->prepare("update motivo set nome = ?, dias_penalidades = ?, idsevidor = ?, idNivel_falta = ? where idMotivo = ?");
+            $resul = $con->prepare("update motivo set nome = ?, idsevidor = ?, idNivel_falta = ? where idMotivo = ?");
             $resul->bindValue(1, $this->nome);
-            $resul->bindValue(2, $this->dias_penalidade);
-            $resul->bindValue(3, $this->servidor_idServidor);
-            $resul->bindValue(4, $this->nivel_falta_idNivel_falta);
-            $resul->bindValue(5, $this->idMotivo);
+            $resul->bindValue(2, $this->servidor_idServidor);
+            $resul->bindValue(3, $this->nivel_falta_idNivel_falta);
+            $resul->bindValue(4, $this->idMotivo);
             $resul->execute();
             $con = null;
             return true;
